@@ -10,3 +10,6 @@ Contributors will raise an issue in this repository with a link to their own rep
 These Rmarkdown files will be run by a docker container to generate the gene sets.
 The Rmarkdown file generates a HTML report which will undergo expert review.
 After review, the workflow will be added to the geneset resource.
+
+## History
+This [blog post from 2015](http://genomespot.blogspot.com/2015/03/are-we-ready-to-move-beyond-msigdb-and.html) goes into a bit more detail about the problem being addressed here.
