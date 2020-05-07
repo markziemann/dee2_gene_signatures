@@ -42,41 +42,64 @@ mdat <- getDee2Metadata(species = SPECIES)
 head(mdat)
 SRRvec <- mdat[which(mdat$SRP_accession==SRP),1]
 x <- getDEE2(SRRvec = SRRvec, species = SPECIES, metadata = mdat, legacy = TRUE)
+
 str(x)
 head(x$GeneCounts)
+
 ```
 
-## Analysis
+## Multidimensional scaling plot
 
 ```{r,analysis1}
 y <- x$GeneCounts
+colnames(y) <- samplesheet$label
 head(y)  
 nrow(y)
 yy <- y[which(rowMeans(y)>10),]
 head(yy)
 MDS <- function(x,mylabels) {
     mydist <- cmdscale(dist(t(x)))
-    plot(mydist, xlab="Coordinate 1", ylab="Coordinate 2", type = "n")
+    myrange <- range(mydist[,1])*1.3
+    plot(mydist, xlab="Coordinate 1", ylab="Coordinate 2", 
+        type = "n", xlim=myrange)
     text(mydist, labels=mylabels, cex=0.9) 
 }
 MDS(x = yy, mylabels = samplesheet$label )
 
+```
+
+
+```{r,de}
 dds <- DESeqDataSetFromMatrix(countData = yy,
                               colData = samplesheet,
                               design= mm )
 dds <- DESeq(dds)
 de <- results(dds)
-
-
 de <- de[order(de$pvalue),]
+
 # RPM
 yyy <- yy/colMeans(yy) * 1000000
 res <- cbind(de,yyy,yy)
 
+#MA plot
+sig <-subset(de, padj < 0.05 )
+ns <-subset(de, padj > 0.05 )
+plot(log2de($baseMean),de$log2FoldChange, 
+     xlab="log2 basemean", ylab="log2 foldchange",
+     pch=19, cex=0.6, col="dark gray",main="MA plot")
+points(log2(sig$baseMean),sig$log2FoldChange,
+       pch=19, cex=0.6, col="red")
+
 up <- rownames(subset(de, log2FoldChange>0 & padj<0.05 ))
 dn <- rownames(subset(de, log2FoldChange<0 & padj<0.05 ))
-up
-dn
+UPNAME = paste(SRP, "up-regulated by knock-down of Setd7 expression")
+DOWNNAME = paste(SRP, "down-regulated by knock-down of Setd7 expression")
+
+gs <- list(UPNAME=up,DOWNNAME=dn)
+str(gs)
 ```
 
 ## Session info
+```{r,sessioninfo}
+sessionInfo()
+```
