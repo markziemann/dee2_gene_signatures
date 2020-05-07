@@ -1,0 +1,82 @@
+---
+title: "SRP096177"
+author: "Mark Ziemann"
+date: "`r Sys.Date()`"
+output:
+  html_document
+---
+
+## Setup pipeline
+
+```{r,setup}
+suppressPackageStartupMessages({
+    library("SummarizedExperiment")
+    library("htm2txt")
+    source("https://raw.githubusercontent.com/markziemann/getDEE2/master/R/getDEE2.R")
+    library("DESeq2")
+    library("edgeR")
+  })
+```
+
+## Study Description
+
+TODO: Define the study design.
+
+```{r,study_info}
+SRP = "SRP096177"
+SPECIES = "hsapiens"
+RUNS <- c("SRR5150592","SRR5150593","SRR5150594","SRR5150595","SRR5150596","SRR5150597")
+GROUPS <- factor(c("Set7KD","Set7KD","Set7KD","NTC","NTC","NTC"), 
+    levels=c("NTC","Set7KD"),ordered = TRUE)
+samplesheet <- as.data.frame(GROUPS,row.names = RUNS)
+samplesheet$label <- paste(rownames(samplesheet),samplesheet$GROUPS)
+mm <- model.matrix(~GROUPS,samplesheet)
+mm
+```
+## Download
+
+Fetch the dataset from [DEE2](http://dee2.io).
+
+```{r,get}
+mdat <- getDee2Metadata(species = SPECIES)
+head(mdat)
+SRRvec <- mdat[which(mdat$SRP_accession==SRP),1]
+x <- getDEE2(SRRvec = SRRvec, species = SPECIES, metadata = mdat, legacy = TRUE)
+str(x)
+head(x$GeneCounts)
+```
+
+## Analysis
+
+```{r,analysis1}
+y <- x$GeneCounts
+head(y)  
+nrow(y)
+yy <- y[which(rowMeans(y)>10),]
+head(yy)
+MDS <- function(x,mylabels) {
+    mydist <- cmdscale(dist(t(x)))
+    plot(mydist, xlab="Coordinate 1", ylab="Coordinate 2", type = "n")
+    text(mydist, labels=mylabels, cex=0.9) 
+}
+MDS(x = yy, mylabels = samplesheet$label )
+
+dds <- DESeqDataSetFromMatrix(countData = yy,
+                              colData = samplesheet,
+                              design= mm )
+dds <- DESeq(dds)
+de <- results(dds)
+
+
+de <- de[order(de$pvalue),]
+# RPM
+yyy <- yy/colMeans(yy) * 1000000
+res <- cbind(de,yyy,yy)
+
+up <- rownames(subset(de, log2FoldChange>0 & padj<0.05 ))
+dn <- rownames(subset(de, log2FoldChange<0 & padj<0.05 ))
+up
+dn
+```
+
+## Session info
