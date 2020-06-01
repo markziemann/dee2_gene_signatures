@@ -7,6 +7,11 @@ output:
 ---
 Source: https://github.com/markziemann/gene_sig_commons
 
+## Background
+
+This analysis is an example of how gene signatures can be generated from publicly available omics data.
+In this example, we will obtain data from the [DEE2](http://dee2.io) database, perform differential analysis with DESeq2 and then return the gene signature. 
+
 ```{r,setup}
 suppressPackageStartupMessages({
     library("devtools")
@@ -20,11 +25,17 @@ suppressPackageStartupMessages({
 
 ## Study Description
 
-TODO: Define the study design.
-
 SRA project ID: SRP096177
+
 GEO Series ID: GSE93236
+
 Project description: https://www.ncbi.nlm.nih.gov//geo/query/acc.cgi?acc=GSE93236
+
+Publication: https://pubmed.ncbi.nlm.nih.gov/24875254/
+
+In this study, the data contributors aimed to ascertain the genes controlled by the protein Setd7. 
+The two groups are control (ctrl, n=3) and knock-down (Set7 KD,n=3). 
+In the knock-down samples, SETD7 expression was reduced by 90%.
 
 ```{r,study_info}
 SRP = "SRP096177"
@@ -44,8 +55,8 @@ Fetch the dataset from [DEE2](http://dee2.io).
 
 ```{r,get}
 mdat <- getDee2Metadata(species = SPECIES)
-head(mdat)
-SRRvec <- mdat[which(mdat$SRP_accession==SRP),1]
+SRRvec <- as.character(mdat[which(mdat$SRP_accession==SRP),1])
+SRRvec
 x <- getDEE2(SRRvec = SRRvec, species = SPECIES, metadata = mdat)
 str(x)
 head(x$GeneCounts)
@@ -54,13 +65,14 @@ head(x$GeneCounts)
 
 ## Multidimensional scaling plot
 
+MDS analysis is a bit like principal component analysis. 
+The closer the labels are, the more similar the datasets are.
+
 ```{r,analysis1}
 y <- x$GeneCounts
 colnames(y) <- samplesheet$label
-head(y)  
-nrow(y)
+# Remove genes with fewer than 10 reads per sample on average
 yy <- y[which(rowMeans(y)>10),]
-head(yy)
 MDS <- function(x,mylabels, ...) {
     mydist <- cmdscale(dist(t(x)))
     myrange <- range(mydist[,1])*1.3
@@ -76,8 +88,7 @@ MDS(x = yy, mylabels = samplesheet$label ,main=SRP)
 
 ```{r,de}
 dds <- DESeqDataSetFromMatrix(countData = yy,
-                              colData = samplesheet,
-                              design= mm )
+    colData = samplesheet, design= mm )
 dds <- DESeq(dds)
 de <- results(dds)
 
@@ -87,6 +98,10 @@ res <- cbind(de,yyy,yy)
 
 res <- res[order(res$pvalue),]
 head(res)
+
+# define up and down-regulated gene lists
+up <- rownames(subset(de, log2FoldChange>0 & padj<0.05 ))
+dn <- rownames(subset(de, log2FoldChange<0 & padj<0.05 ))
 ```
 
 ## Charts
@@ -94,8 +109,8 @@ head(res)
 ```{r,decharts}
 # MA plot
 sig <-subset(de, padj < 0.05 )
-GENESUP <- nrow(subset(sig,  log2FoldChange > 0 ))
-GENESDN <- nrow(subset(sig,  log2FoldChange < 0 ))
+GENESUP <- length(up)
+GENESDN <- length(dn)
 SUBHEADER = paste(GENESUP, "up, ", GENESDN, "down")
 ns <-subset(de, padj > 0.05 )
 plot(log2(de$baseMean),de$log2FoldChange, 
@@ -105,23 +120,23 @@ plot(log2(de$baseMean),de$log2FoldChange,
 points(log2(sig$baseMean),sig$log2FoldChange,
        pch=19, cex=0.5, col="red")
 mtext(SUBHEADER)
-up <- rownames(subset(de, log2FoldChange>0 & padj<0.05 ))
-dn <- rownames(subset(de, log2FoldChange<0 & padj<0.05 ))
 
 # heatmap
 top <- res[1:50,7:ncol(res)]
 top <- top[,1:(ncol(top)/2)]
 colfunc <- colorRampPalette(c("blue", "white", "red"))
-heatmap.2(  as.matrix(top), col=colfunc(25),scale="row", trace="none",margins = c(6,6), cexRow=.4,
-    main=SRP)
+heatmap.2(  as.matrix(top), col=colfunc(25),scale="row", trace="none",
+    margins = c(6,6), cexRow=.4, main=SRP)
 ```
 
-##  Gene sets
+##  Upload
 ```{r,genesets}
+DENAME = paste(SRP, "differential expression by knock-down of Setd7 expression")
 UPNAME = paste(SRP, "up-regulated by knock-down of Setd7 expression")
 DOWNNAME = paste(SRP, "down-regulated by knock-down of Setd7 expression")
-
-gs <- list(UPNAME=up,DOWNNAME=dn)
+df <- data.frame(de)
+gs <- list(df,up,dn)
+names(gs) <- c(DENAME,UPNAME,DOWNNAME)
 str(gs)
 # TODO: secure copy
 # https://www.rdocumentation.org/packages/ssh/versions/0.6/topics/scp
