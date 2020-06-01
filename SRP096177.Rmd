@@ -5,14 +5,13 @@ date: "`r Sys.Date()`"
 output:
   html_document
 ---
-
-## Setup pipeline
+Source: https://github.com/markziemann/gene_sig_commons
 
 ```{r,setup}
 suppressPackageStartupMessages({
-    library("SummarizedExperiment")
-    library("htm2txt")
-    source("https://raw.githubusercontent.com/markziemann/getDEE2/master/R/getDEE2.R")
+    library("devtools")
+    # devtools::install_github("markziemann/dee2/getDEE2") # Version: 0.0.4
+    library("getDEE2")
     library("DESeq2")
     library("edgeR")
     library("gplots") 
@@ -22,6 +21,10 @@ suppressPackageStartupMessages({
 ## Study Description
 
 TODO: Define the study design.
+
+SRA project ID: SRP096177
+GEO Series ID: GSE93236
+Project description: https://www.ncbi.nlm.nih.gov//geo/query/acc.cgi?acc=GSE93236
 
 ```{r,study_info}
 SRP = "SRP096177"
@@ -43,8 +46,7 @@ Fetch the dataset from [DEE2](http://dee2.io).
 mdat <- getDee2Metadata(species = SPECIES)
 head(mdat)
 SRRvec <- mdat[which(mdat$SRP_accession==SRP),1]
-x <- getDEE2(SRRvec = SRRvec, species = SPECIES, metadata = mdat, legacy = TRUE)
-
+x <- getDEE2(SRRvec = SRRvec, species = SPECIES, metadata = mdat)
 str(x)
 head(x$GeneCounts)
 
@@ -78,11 +80,13 @@ dds <- DESeqDataSetFromMatrix(countData = yy,
                               design= mm )
 dds <- DESeq(dds)
 de <- results(dds)
-de <- de[order(de$pvalue),]
 
 # RPM
 yyy <- yy/colMeans(yy) * 1000000
 res <- cbind(de,yyy,yy)
+
+res <- res[order(res$pvalue),]
+head(res)
 ```
 
 ## Charts
@@ -105,12 +109,11 @@ up <- rownames(subset(de, log2FoldChange>0 & padj<0.05 ))
 dn <- rownames(subset(de, log2FoldChange<0 & padj<0.05 ))
 
 # heatmap
-top <- yyy[which(rownames(yyy) %in% head(rownames(de),100)),]
-head(top)
+top <- res[1:50,7:ncol(res)]
+top <- top[,1:(ncol(top)/2)]
 colfunc <- colorRampPalette(c("blue", "white", "red"))
 heatmap.2(  as.matrix(top), col=colfunc(25),scale="row", trace="none",margins = c(6,6), cexRow=.4,
     main=SRP)
-
 ```
 
 ##  Gene sets
@@ -120,7 +123,7 @@ DOWNNAME = paste(SRP, "down-regulated by knock-down of Setd7 expression")
 
 gs <- list(UPNAME=up,DOWNNAME=dn)
 str(gs)
-# secure copy
+# TODO: secure copy
 # https://www.rdocumentation.org/packages/ssh/versions/0.6/topics/scp
 ```
 
