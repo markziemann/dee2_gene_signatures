@@ -1,5 +1,5 @@
 # Gene Signature Commons
-GSC is A community resource of reproducible gene sets.
+GSC is a community resource of reproducible gene sets.
 
 ## Purpose
 Gene signatures are a valuable resource in the genomics community but typically the workflows for generating them are not open source and the reproducibility is under question. 
