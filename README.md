@@ -6,7 +6,7 @@ Gene signatures are a valuable resource in the genomics community but typically 
 This repository enables researchers to contribute reproducible workflows which generate gene signatures from various omics data. 
 We welcome contributions from any researcher, from citizen scientists to major academic labs.
 
-## What are gene signatures
+## What are gene signatures?
 Normally, gene signatures are sets of genes that have a common feature. 
 The standard gene set format is .GMT, however there may be use for more detailed signatures that include information such as fold change, p-values, confidence intervals and the like. 
 Genes could be mined from studies or disease, such as GWAS, from epigenetics and gene expression studies.
