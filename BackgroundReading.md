@@ -53,7 +53,7 @@ Moreover there are additional databases of gene sets aggregated from curation co
 
 Success in enrichment analysis requires both accurate statistical methods as well as comprehensive gene annotations.
 The growth in gene annotation coverage over the past 10 years has been staggering, but it is far from over.
-There have been innovative projects aimed towards extracting gene signatures from large omics datasets (Wang et al, 2016; Shah et al, 2016) but 
+There have been innovative projects aimed towards extracting gene signatures from large omics datasets (Wang et al, 2016; Shah et al, 2016) but there is still much to do.
 For example the class of long non-coding genes has over 16,000 members but only a small fraction of these have a described function in the literature and their representation in databases such as GO and REACTOME is nil.
 
 # References
