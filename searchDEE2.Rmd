@@ -1,0 +1,55 @@
+---
+title: "Get a list of human RNA-seq studies"
+author: "The Gene Sig Commons Group"
+date: "08/07/2020"
+output: html_document
+---
+
+## Intro
+
+In this script we're obtaining the current list of human RNA-seq studies from dee2.io using the getDEE2 R package.
+
+```{r cars}
+library("getDEE2")
+md <- getDee2Metadata("hsapiens")
+head(md)
+dim(md)
+length(unique(md$GEO_series))
+head(md$GEO_series)
+dee2_gse <- as.character(unique(md$GEO_series))
+length(dee2_gse)
+```
+
+## Extract GDS information
+
+Keywords: Epilepsy, heart disease/CVD, diabetes.
+Go to https://www.ncbi.nlm.nih.gov/gds/ and search your disease of interest. 
+Refine the search results for Homo sapiens only.
+Save the results as a file; "send to" --> "file" --> "summary"
+Use Rstudio to upload the file and then the below code will work if the file names match.
+
+```{r,importgds}
+geo <- readLines("gds_result.txt")
+head(geo,10)
+geo <- geo[grep("GSE",geo)]
+geo <- geo[grep("Accession",geo)]
+geo <- sapply(strsplit(geo," "),"[[",2)
+geo <- gsub("\tID:","",geo)
+geo <- unique(geo)
+head(geo)
+length(geo)
+```
+
+## Intersect
+
+With this part you will get a list of studies (GEO series) that are relatd to your disease and present in the DEE2 database. 
+
+```{r,itx}
+intersect(dee2_gse,geo)
+```
+
+I need you to make a new text file in the GitHub repo, for example "epilepsy.md" which describes each of the intersected studies and whether they are good candidates for processing by us:
+
+* The study is relevant to the disease.
+
+* The experiment is replicated, that means n>2
