@@ -33,5 +33,9 @@ GSE89843: not relevant to epilepsy
 
 ## Contrasts
 SRP222346: mock treatment versus dCas9 transduced SH-SY5Y cells:mock; SRX6867493, SRX6867494: dCas9; SRX6867495 , SRX6867496 , SRX6867497;
-SRP222346: dCas9 transduced versus dCas9 with TET1 co-expression in SH-SY5Y cellsd:Cas9; SRX6867495 , SRX6867496 , SRX6867497;dCas9+TET1; SRX6867498 ,SRX6867499 ,SRX6867500;
 
+SRP222346: dCas9 transduced versus dCas9 with TET1 co-expression in SH-SY5Y cellsd:Cas9; SRX6867495 , SRX6867496 , SRX6867497;dCas9+TET1; SRX6867498 ,SRX6867499;
+
+SRP222346: dCas9 transduced versus dCas9 with VP64 co-expression in SH-SY5Y cellsd:Cas9; SRX6867495 , SRX6867496 , SRX6867497;dCas9+VP64; SRX6867500, SRX6867501, SRX6867502;
+
+SRP222346: dCas9 transduced versus dCas9 with TET1+VP64 co-expression in SH-SY5Y cellsd:Cas9; SRX6867495 , SRX6867496 , SRX6867497;TET1+VP64; SRX6867503, SRX6867504, SRX6867505;
