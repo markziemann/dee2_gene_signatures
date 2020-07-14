@@ -31,3 +31,7 @@ GSE89843: not relevant to epilepsy
 ## Canditate studies
 "GSE137663" "GSE62731"  "GSE67835"  "GSE70935"  "GSE71058"  "GSE72202"  "GSE89843"  "GSE99937"  "GSE100242" "GSE100670" "GSE111458" "GSE99074" 
 
+## Contrasts
+SRP222346: mock treatment versus dCas9 transduced SH-SY5Y cells:mock; SRX6867493, SRX6867494: dCas9; SRX6867495 , SRX6867496 , SRX6867497;
+SRP222346: dCas9 transduced versus dCas9 with TET1 co-expression in SH-SY5Y cellsd:Cas9; SRX6867495 , SRX6867496 , SRX6867497;dCas9+TET1; SRX6867498 ,SRX6867499 ,SRX6867500;
+
