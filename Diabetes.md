@@ -14,7 +14,21 @@ GSE53949: pancreatic islet under palmitate exposure vs under control conditions
 
 GSE140627: Gene regulation in type 1 diabetes renal function decliners and non renal function decliners
 
-GSE57896: Obesity combated through conversion of white to brown adipocytes with different gene expression regulated using inhibitors which do the reverse.
+GSE57896?: Obesity combated through conversion of white to brown adipocytes with different gene expression regulated using inhibitors of molecules that do the reverse of this conversion.
+
+GSE60424?*: Gene regulation comparison between control and different immune-associated diseases. (unsure how many to use and the comparisons which should be chosen)
+
+GSE67543?*: No clear differentiation between datasets. Contrasts can be made with the datasets given though. Unclear which would be useful.
+
+GSE58557?*: no clear differentiation between datasets (i.e. no ctrl vs study or something like this). Can derive contrasts from datasets however many do not have sufficient replicates and unsure which would be useful.
+
+GSE69889?*: mice and human data. Can just use human data. Seems diabetes related. Gene expression differentiated according to molecular clock.
+
+GSE76268: Gene expression differences between glucagon-secreting α-cells and insulin-secreting β-cells.
+
+GSE77108: Gene expression regulated by HDAC inhibitors, in this case, SAHA, ep300 siRNA and C646 in diabetic and non-diabetic individuals.
+
+GSE77522: Gene expression regulated by treatment with metaformin in normoglycaemic and hyperglycaemic conditions
 
 ## Studies that don't fit criteria
 
@@ -33,6 +47,15 @@ GSE51924: no replicates
 GSE140064: no replicates
 
 GSE55567: no replicates
+
+GSE63887?: no clear differentiation between datasets (i.e. no ctrl vs study or something like this) and therefore contrast doesn't seem possible without another study or more data
+
+GSE67141: not directly related to diabetes also no replicates
+
+GSE76308: no replicates
+
+
+
 
 ## Contrast
 
@@ -69,6 +92,11 @@ SRP035268:Genes expressed differentially regulated by saturated fatty acids in P
 
 SRP230455:Genes expressed differentially in those that have type 1 diabetes and have declining renal functionality and healthy individuals:Ctrl;	SRX7177515,SRX7177516:Decliners; SRX7177517,SRX7177518,SRX7177522,SRX7177524
 
+SRP042186: Genes expressed differentially regulated by treatment of human white adipose tissue with 24 hours of JAK inhibition:Ctrl; SRX550549,SRX550550,SRX550551:WATJAKinhibitortreatment24hr; SRX550552,SRX550553,SRX550554
 
+SRP042186: Genes expressed differentially regulated by treatment of human white adipose tissue with 24 hours of SYK inhibition:Ctrl; SRX550549,SRX550550,SRX550551:WATSYKinhibitortreatment24hr; SRX550555,SRX550556,SRX550557
 
+SRP042186: Genes expressed differentially regulated by treatment of human white adipose tissue with 7 days of JAK inhibition:Ctrl; SRX550564,SRX550565,SRX550566:WATJAKinhibitortreatment7day; SRX550567,SRX550568,SRX550569
+
+SRP042186: Genes expressed differentially regulated by treatment of human white adipose tissue with 7 days of SYK inhibition:Ctrl; SRX550564,SRX550565,SRX550566:WATSYKinhibitortreatment7day;SRX550570,SRX550571,SRX550572
 
