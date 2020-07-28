@@ -271,4 +271,4 @@ SRP100748:human induced pluripotent stem cells(hiPSCs) versus ISX-9 treated hiPS
 
 SRP100748:DMSO treated hiPSCs versus ISX-9 treated hiPSCs:DMSO;SRX2592100,SRX2592101,SRX2592102,SRX2592103:ISX-9;SRX2592096,SRX2592097,SRX2592098,SRX2592099;
 
-SRP100426:control vs cardiac stromal cells from arrhythmogenic cardiomyopathy patients(ACM):control;SRX2578750,SRX2578751,SRX2578752:ACM;SRX2578747,SRX2578748,SRX2578749;sex, (passage???)
+SRP100426:control vs cardiac stromal cells from arrhythmogenic cardiomyopathy patients(ACM):control;SRX2578750,SRX2578751,SRX2578752:ACM;SRX2578747,SRX2578748,SRX2578749;sex
