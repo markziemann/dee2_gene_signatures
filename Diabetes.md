@@ -14,15 +14,13 @@ GSE53949: pancreatic islet under palmitate exposure vs under control conditions
 
 GSE140627: Gene regulation in type 1 diabetes renal function decliners and non renal function decliners
 
-GSE57896?: Obesity combated through conversion of white to brown adipocytes with different gene expression regulated using inhibitors of molecules that do the reverse of this conversion.
+GSE57896*: Obesity combated through conversion of white to brown adipocytes with different gene expression regulated using inhibitors of molecules that do the reverse of this conversion. Add BAT vs WAT.
 
-GSE60424?*: Gene regulation comparison between control and different immune-associated diseases. (unsure how many to use and the comparisons which should be chosen)
+GSE60424*: Gene regulation comparison between control and different immune-associated diseases. (unsure how many to use and the comparisons which should be chosen)
 
-GSE67543?*: No clear differentiation between datasets. Contrasts can be made with the datasets given though. Unclear which would be useful.
+GSE67543*: Alpha vs Beta and fetal vs adult contrasts
 
-GSE58557?*: no clear differentiation between datasets (i.e. no ctrl vs study or something like this). Can derive contrasts from datasets however many do not have sufficient replicates and unsure which would be useful.
-
-GSE69889?*: mice and human data. Can just use human data. Seems diabetes related. Gene expression differentiated according to molecular clock.
+GSE69889*: mice and human data. Can just use human data. Seems diabetes related. Gene expression differentiated according to molecular clock.
 
 GSE76268: Gene expression differences between glucagon-secreting α-cells and insulin-secreting β-cells.
 
@@ -54,7 +52,16 @@ GSE67141: not directly related to diabetes also no replicates
 
 GSE76308: no replicates
 
+GSE58557: not related to diabetes
 
+## Studies tbd
+
+[37] "GSE84133"  "GSE84714"  "GSE84814"  "GSE85241"  "GSE35296"  "GSE85527"  "GSE85530"  "GSE85531"  "GSE86611" 
+[46] "GSE86884"  "GSE87626"  "GSE89360"  "GSE89475"  "GSE90028"  "GSE38447"  "GSE92724"  "GSE92772"  "GSE93709" 
+[55] "GSE94019"  "GSE95243"  "GSE96562"  "GSE96563"  "GSE96564"  "GSE96568"  "GSE97084"  "GSE97205"  "GSE97591" 
+[64] "GSE97647"  "GSE97655"  "GSE98485"  "GSE99068"  "GSE101207" "GSE102371" "GSE102498" "GSE106148" "GSE106177"
+[73] "GSE106520" "GSE108413" "GSE109140" "GSE109265" "GSE110935" "GSE111876" "GSE114051" "GSE116369" "GSE116559"
+[82] "GSE117469" "GSE44639"  "GSE120299" "GSE120904" "GSE50386" 
 
 
 ## Contrast
@@ -99,4 +106,7 @@ SRP042186: Genes expressed differentially regulated by treatment of human white 
 SRP042186: Genes expressed differentially regulated by treatment of human white adipose tissue with 7 days of JAK inhibition:Ctrl; SRX550564,SRX550565,SRX550566:WATJAKinhibitortreatment7day; SRX550567,SRX550568,SRX550569
 
 SRP042186: Genes expressed differentially regulated by treatment of human white adipose tissue with 7 days of SYK inhibition:Ctrl; SRX550564,SRX550565,SRX550566:WATSYKinhibitortreatment7day;SRX550570,SRX550571,SRX550572
+
+
+
 
