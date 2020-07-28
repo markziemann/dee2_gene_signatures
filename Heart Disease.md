@@ -1,5 +1,7 @@
 ## Studies that fit the criteria
 
+### Haris's Studies 
+
 GSE138531: 3 stenotic vs 3 sclerotic human aortic valve samples. Do one as a control and one as treatment. 
 
 GSE141910: Left ventricular transcriptomes of non-failing healthy donors, Peripartum cardiomyopathy (PPCM), Hypertrophic cardiomyopathy (HCM) and Dilated cardiomyopathy (DCM) samples.
@@ -16,9 +18,7 @@ GSE65705: 16 ST-segment elevation myocardial infarction (STEMI), 16 non-STEMI (N
 
 GSE67844: Cardiomyoctyes treated with siRNA knockdown (scrambled control, PANCR, PITX2c) in triplicate and RNA and smallRNAs extracted for sequencing.
 
-GSE76712: ??? RNA Expression Profile of Calcified Bicuspid, Calcified Tricuspid and Normal Human Tricuspid Aortic Valves by RNA Sequencing (Bicuspid aortic valves)
-
-GSE76717: ??? Same study (Tricuspid aortic valves, control present in samples)
+GSE76717: Calcified tricuspid aortic valves vs controls.
 
 GSE83410: Profiling AGO2-associated RNAs in cardiac tissues (6 samples differing etiologies). Continous variable.
 
@@ -30,13 +30,15 @@ GSE36761: Right ventricular mRNA-seq profiles from 22 patients with Tetralogy of
 
 GSE89714: Control vs heart tissue of hypertrophic cardiomyopathy patients.
 
+### Chelsia's Studies
+
 GSE95120: Control vs Cardiac stromal cells from Arrhythmogenic cardiomyopathy patients.
 
-GSE95390: ??? Human induced pluripotent stem cells to generate cardiac progenitor cells.
+GSE95390: Human induced pluripotent stem cells to generate cardiac progenitor cells.
 
 GSE96975: Control(basal) vs Cardiac fibroblasts treated with IL11 vs Cardiac fibroblasts treated with TGFB1.
 
-GSE98941: ??? Control vs polyI:C treated cardiac progenitors vs TGFbeta treated cardiac progenitors.
+GSE98941: Control vs polyI:C treated cardiac progenitors vs TGFbeta treated cardiac progenitors.
 
 GSE99321: Controls vs LV of pediatric idiopathic dilated cardiomyopathy patients.
 
@@ -123,6 +125,8 @@ GSE74941: Less than 3 replicates.
 GSE74716: Less than 3 replicates.
 
 GSE74798: Study explores prostate cancer cells.
+
+GSE76712: Lacks control group.
 
 GSE77784: Study not relevant to heart disease.
 
