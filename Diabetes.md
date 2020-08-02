@@ -14,19 +14,17 @@ GSE53949: pancreatic islet under palmitate exposure vs under control conditions
 
 GSE140627: Gene regulation in type 1 diabetes renal function decliners and non renal function decliners
 
-GSE57896*: Obesity combated through conversion of white to brown adipocytes with different gene expression regulated using inhibitors of molecules that do the reverse of this conversion. Add BAT vs WAT.
+GSE57896: Obesity combated through conversion of white to brown adipocytes with different gene expression regulated using inhibitors of molecules that do the reverse of this conversion.
 
-GSE60424*: Gene regulation comparison between control and different immune-associated diseases. (unsure how many to use and the comparisons which should be chosen)
+GSE60424: Gene regulation comparison between control and different immune-associated diseases. Use excel table to compare healthy vs diabetic of the same cell types.
 
-GSE67543*: Alpha vs Beta and fetal vs adult contrasts
+GSE67543: Alpha vs Beta and fetal vs adult contrasts
 
-GSE69889*: mice and human data. Can just use human data. Seems diabetes related. Gene expression differentiated according to molecular clock.
+GSE76268?: Gene expression differences between glucagon-secreting α-cells and insulin-secreting β-cells.
 
-GSE76268: Gene expression differences between glucagon-secreting α-cells and insulin-secreting β-cells.
+GSE77108*?: Gene expression regulated by HDAC inhibitors, in this case, SAHA, ep300 siRNA and C646 in diabetic and non-diabetic individuals.
 
-GSE77108: Gene expression regulated by HDAC inhibitors, in this case, SAHA, ep300 siRNA and C646 in diabetic and non-diabetic individuals.
-
-GSE77522: Gene expression regulated by treatment with metaformin in normoglycaemic and hyperglycaemic conditions
+GSE77522*: Gene expression regulated by treatment with metaformin in normoglycaemic and hyperglycaemic conditions
 
 ## Studies that don't fit criteria
 
@@ -53,6 +51,8 @@ GSE67141: not directly related to diabetes also no replicates
 GSE76308: no replicates
 
 GSE58557: not related to diabetes
+
+GSE69889: Gene expression differentiated according to molecular clock.
 
 ## Studies tbd
 
@@ -111,6 +111,44 @@ SRP042186: Genes expressed differentially regulated by treatment of human white 
 SRP042186: Genes expressed differentially regulated by treatment of human white adipose tissue with 7 days of JAK inhibition:Ctrl; SRX550564,SRX550565,SRX550566:WATJAKinhibitortreatment7day; SRX550567,SRX550568,SRX550569
 
 SRP042186: Genes expressed differentially regulated by treatment of human white adipose tissue with 7 days of SYK inhibition:Ctrl; SRX550564,SRX550565,SRX550566:WATSYKinhibitortreatment7day;SRX550570,SRX550571,SRX550572
+
+SRP042186: Genes expressed differentially in human white vs brown adipose tissue:White; SRX550549,SRX550550,SRX550551:Brown:SRX550561,SRX550562,SRX550563
+
+SRP045500: Genes expressed differentially in human neutrophils with type 1 diabetes:Ctrl; SRX680546,SRX680607,SRX680614,SRX680628:Diabetes; SRX680562,SRX680568,SRX680642,SRX680648
+
+SRP045500: Genes expressed differentially in human monocytes with type 1 diabetes:Ctrl; SRX680547,SRX680608,SRX680615,SRX680629:Diabetes; SRX680563,SRX680569,SRX680643,SRX680649
+
+SRP045500:Genes expressed differentially in human B-cells with type 1 diabetes:Ctrl; SRX680548,SRX680609,SRX680616,SRX680630:Diabetes; SRX680564,SRX680570,SRX680644,SRX680650
+
+SRP045500:Genes expressed differentially in human CD4 with type 1 diabetes:Ctrl; SRX680549,SRX680610,SRX680617,SRX680631:Diabetes; SRX680565,SRX680571,SRX680645,SRX680651
+
+SRP045500:Genes expressed differentially in human CD8 with type 1 diabetes:Ctrl; SRX680550,SRX680611,SRX680618,SRX680632:Diabetes; SRX680566,SRX680572,SRX680646,SRX680652
+
+SRP045500:Genes expressed differentially in human CD8 with type 1 diabetes:Ctrl; SRX680551,SRX680612,SRX680619,SRX680633:Diabetes; SRX680567,SRX680653
+
+SRP045500:Genes expressed differentially in human whole blood with type 1 diabetes:Ctrl;SRX680541,SRX680613,
+SRX680620,SRX680634:Diabetes; SRX680544,SRX680545,SRX680647,SRX680654
+
+SRP056835:Genes expressed differentially in human pancreatic alpha and beta cells:Alpha; SRX977631,SRX977632,SRX977633,		
+SRX977634,SRX977635,SRX977636,SRX977637,SRX977638,SRX977639,SRX977640,SRX977641:Beta; SRX977624,SRX977625,SRX977626,	SRX977627,SRX977628,SRX977629,SRX977630,SRX977642,SRX977643,SRX977644,SRX977645,SRX977646,SRX977647
+
+SRP056835:Genes expressed differentially in human pancreatic adult and fetal cells:Adult; SRX977624,SRX977625,SRX977626,	SRX977627,SRX977628,SRX977629,SRX977630,SRX977631,SRX977632,SRX977633,SRX977634,SRX977635,SRX977636:Fetal; SRX977637,SRX977638,SRX977639,SRX9776340,SRX977641,SRX977642,SRX977643,SRX977644,SRX977645,SRX977646,SRX977647
+
+SRP067701:Genes expressed differentially in glucagon-secreting α-cells and insulin-secreting β-cells:Alpha; SRX1497368,SRX1497369,SRX1497370,SRX1497371,SRX1497372,SRX1497373,SRX1497374:Beta; SRX1497375,SRX1497376,SRX1497377,SRX1497378,SRX1497379,SRX1497380,SRX1497381,SRX1497382
+
+SRP068733:Genes expressed differentially in diabetic endothelial cells treated with SAHA:Ctrl; SRX1540354,SRX1540355,SRX1540356:SAHA; SRX1540357,SRX1540358,SRX1540359
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
