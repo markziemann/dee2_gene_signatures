@@ -20,11 +20,11 @@ GSE60424: Gene regulation comparison between control and different immune-associ
 
 GSE67543: Alpha vs Beta and fetal vs adult contrasts
 
-GSE76268?: Gene expression differences between glucagon-secreting α-cells and insulin-secreting β-cells.
+GSE76268: Gene expression differences between glucagon-secreting α-cells and insulin-secreting β-cells. add ATAC alpha vs ATAC beta
 
-GSE77108?: Gene expression regulated by HDAC inhibitors, in this case, SAHA, ep300 siRNA and C646 in diabetic and non-diabetic individuals.
+GSE77108*: Gene expression regulated by HDAC inhibitors, in this case, SAHA, ep300 siRNA and C646 in diabetic and non-diabetic individuals. Add Healthy ctrl vs healthy treatment.
 
-GSE77522*: Gene expression regulated by treatment with metaformin in normoglycaemic and hyperglycaemic conditions
+GSE77522: Gene expression regulated by treatment with metaformin in normoglycaemic and hyperglycaemic conditions
 
 ## Studies that don't fit criteria
 
@@ -59,8 +59,12 @@ GSE69889: Gene expression differentiated according to molecular clock.
 ### Aaron's
 
 [37] "GSE84133"  "GSE84714"  "GSE84814"  "GSE85241"  "GSE35296"  "GSE85527"  "GSE85530"  "GSE85531"  "GSE86611" 
-[46] "GSE86884"  "GSE87626"  "GSE89360"  "GSE89475"  "GSE90028"  "GSE38447"  "GSE92724"  "GSE92772"  "GSE93709" 
+[46] "GSE86884"  "GSE87626"  "GSE89360"  "GSE89475"  "GSE90028"  "GSE38447"  
+
+### Haris'
+
 [55] "GSE94019"  "GSE95243"  "GSE96562"  "GSE96563"  "GSE96564"  "GSE96568"  "GSE97084"  "GSE97205"  "GSE97591" 
+"GSE92772"  "GSE93709"  "GSE92724" 
 
 ### Chelsia's
 
