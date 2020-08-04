@@ -23,30 +23,59 @@ suppressPackageStartupMessages({
 })
 ```
 
-## Study Description
 
-SRA project ID: SRP096177
 
-GEO Series ID: GSE93236
-
-Project description: https://www.ncbi.nlm.nih.gov//geo/query/acc.cgi?acc=GSE93236
-
-Publication: https://pubmed.ncbi.nlm.nih.gov/24875254/
-
-In this study, the data contributors aimed to ascertain the genes controlled by the protein Setd7. 
-The two groups are control (ctrl, n=3) and knock-down (Set7 KD,n=3). 
-In the knock-down samples, SETD7 expression was reduced by 90%.
-
-```{r,study_info}
-SRP = "SRP096177"
+```{r,study_list}
+# let's assume species is human for now
 SPECIES = "hsapiens"
-RUNS <- c("SRR5150592","SRR5150593","SRR5150594","SRR5150595","SRR5150596","SRR5150597")
-GROUPS <- factor(c("Set7KD","Set7KD","Set7KD","NTC","NTC","NTC"), 
-    levels=c("NTC","Set7KD"),ordered = TRUE)
-CONTRASTNAME="Control vs Set7 knock-down"
-samplesheet <- as.data.frame(GROUPS,row.names = RUNS)
-samplesheet$label <- paste(rownames(samplesheet),samplesheet$GROUPS)
-mm <- model.matrix(~GROUPS,samplesheet)
+
+# read in the file
+x <- readLines("epilepsy.md")
+
+# this is the best way to get studies with contrasts set up
+x <- x[grep("RP",x)]
+
+# lets prototype this by 
+x1 <- x[[1]]
+
+# define the SRP
+SRP = strsplit(x1,":")[[1]][1]
+
+# define contrast name
+contrast_name = strsplit(x1,":")[[1]][2]
+
+# get control group info
+control = strsplit(x1,":")[[1]][3]
+
+# get control group name
+control_name = strsplit(control,";")[[1]][1]
+
+# get control groups samples
+# note that we are extracting SRX data not SRR
+control_data = strsplit(control,";")[[1]][2]
+control_data <- unlist(strsplit(control_data, ","))
+control_data <- gsub(" ","",control_data)
+
+# get case group info
+case = strsplit(x1,":")[[1]][4]
+
+# get case group name
+case_name = strsplit(case,";")[[1]][1]
+
+# get case groups samples
+case_data = strsplit(case,";")[[1]][2]
+case_data <- unlist(strsplit(case_data, ","))
+case_data <- gsub(" ","",case_data)
+
+# set up the sample sheet starting with a list of samples
+ss <- as.data.frame(paste(c(control_data,case_data),sep=","))
+
+# define case group
+ss$case <- as.numeric(ss[,1] %in% case_data)
+
+# set up the model
+mm <- model.matrix(~case,ss)
+rownames(mm) <- ss[,1]
 mm
 ```
 ## Download
@@ -55,6 +84,7 @@ Fetch the dataset from [DEE2](http://dee2.io).
 
 ```{r,get}
 mdat <- getDee2Metadata(species = SPECIES)
+
 SRRvec <- as.character(mdat[which(mdat$SRP_accession==SRP),1])
 SRRvec
 x <- getDEE2(SRRvec = SRRvec, species = SPECIES, metadata = mdat)
