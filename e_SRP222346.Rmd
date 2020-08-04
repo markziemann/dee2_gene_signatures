@@ -15,7 +15,7 @@ In this example, we will obtain data from the [DEE2](http://dee2.io) database, p
 ```{r,setup}
 suppressPackageStartupMessages({
     library("devtools")
-    # devtools::install_github("markziemann/dee2/getDEE2") # Version: 0.0.4
+    #devtools::install_github("markziemann/getDEE2")
     library("getDEE2")
     library("DESeq2")
     library("edgeR")
@@ -36,7 +36,7 @@ x <- readLines("epilepsy.md")
 x <- x[grep("RP",x)]
 
 # lets prototype this by 
-x1 <- x[[1]]
+x1 <- x[[2]]
 
 # define the SRP
 SRP = strsplit(x1,":")[[1]][1]
@@ -72,25 +72,40 @@ ss <- as.data.frame(paste(c(control_data,case_data),sep=","))
 
 # define case group
 ss$case <- as.numeric(ss[,1] %in% case_data)
+ss
 
 # set up the model
 mm <- model.matrix(~case,ss)
 rownames(mm) <- ss[,1]
 mm
-```
-## Download
 
-Fetch the dataset from [DEE2](http://dee2.io).
+# get the data from the database
+mdat <- getDEE2::getDEE2Metadata(species = SPECIES)
 
-```{r,get}
-mdat <- getDee2Metadata(species = SPECIES)
+# filter for samples in this study
+mdat1 <- mdat[which(mdat$SRP_accession==SRP),]
 
-SRRvec <- as.character(mdat[which(mdat$SRP_accession==SRP),1])
-SRRvec
-x <- getDEE2(SRRvec = SRRvec, species = SPECIES, metadata = mdat)
-str(x)
-head(x$GeneCounts)
+# filter for only the relevant samples
+mdat1 <- mdat1[which(mdat1$SRX_accession %in% rownames(mm)),]
 
+# show the file
+mdat1
+
+# fetch the data
+y <- getDEE2(SRRvec = mdat1$SRR_accession, species = SPECIES, metadata = mdat,legacy = TRUE)
+
+# look at the data structure
+str(y)
+head(y$GeneCounts)
+
+# aggregate to experiment level
+yy <- getDEE2::srx_agg(y,counts="GeneCounts")
+
+# show the count matrix
+head(yy)
+
+# Remove genes with fewer than 10 reads per sample on average
+yy <- yy[which(rowMeans(yy)>10),]
 ```
 
 ## Multidimensional scaling plot
@@ -99,10 +114,8 @@ MDS analysis is a bit like principal component analysis.
 The closer the labels are, the more similar the datasets are.
 
 ```{r,analysis1}
-y <- x$GeneCounts
-colnames(y) <- samplesheet$label
-# Remove genes with fewer than 10 reads per sample on average
-yy <- y[which(rowMeans(y)>10),]
+
+
 MDS <- function(x,mylabels, ...) {
     mydist <- cmdscale(dist(t(x)))
     myrange <- range(mydist[,1])*1.3
@@ -118,7 +131,7 @@ MDS(x = yy, mylabels = samplesheet$label ,main=SRP)
 
 ```{r,de}
 dds <- DESeqDataSetFromMatrix(countData = yy,
-    colData = samplesheet, design= mm )
+    colData = ss, design= mm )
 dds <- DESeq(dds)
 de <- results(dds)
 
