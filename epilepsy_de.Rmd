@@ -1,0 +1,37 @@
+---
+title: "Epilepsy"
+author: "The Gene Signature Commons Group"
+date: "`r Sys.Date()`"
+output:
+  html_document
+---
+Source: https://github.com/markziemann/gene_sig_commons
+
+## Background
+
+This analysis is an example of how gene signatures can be generated from publicly available omics data.
+In this example, we will obtain data from the [DEE2](http://dee2.io) database, perform differential analysis with DESeq2 and then return the gene signature. 
+
+```{r,setup}
+source("de_functions.R")
+```
+
+
+```{r,study_list}
+# let's assume species is human for now
+SPECIES = "hsapiens"
+
+# read in the file
+x <- readLines("epilepsy.md")
+
+# this is the best way to get studies with contrasts set up
+x <- x[grep("RP",x)]
+
+# how many contrasts to do?
+length(x)
+
+# lets prototype this by 
+main(x[[3]])
+
+data <- sapply(x,main)
+```
