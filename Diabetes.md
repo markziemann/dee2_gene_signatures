@@ -20,11 +20,11 @@ GSE60424: Gene regulation comparison between control and different immune-associ
 
 GSE67543: Alpha vs Beta and fetal vs adult contrasts
 
-GSE76268?: Gene expression differences between glucagon-secreting α-cells and insulin-secreting β-cells.
+GSE76268: Gene expression differences between glucagon-secreting α-cells and insulin-secreting β-cells. add ATAC alpha vs ATAC beta
 
-GSE77108*?: Gene expression regulated by HDAC inhibitors, in this case, SAHA, ep300 siRNA and C646 in diabetic and non-diabetic individuals.
+GSE77108*: Gene expression regulated by HDAC inhibitors, in this case, SAHA, ep300 siRNA and C646 in diabetic and non-diabetic individuals. Add Healthy ctrl vs healthy treatment.
 
-GSE77522*: Gene expression regulated by treatment with metaformin in normoglycaemic and hyperglycaemic conditions
+GSE77522: Gene expression regulated by treatment with metaformin in normoglycaemic and hyperglycaemic conditions
 
 ## Studies that don't fit criteria
 
@@ -59,8 +59,12 @@ GSE69889: Gene expression differentiated according to molecular clock.
 ### Aaron's
 
 [37] "GSE84133"  "GSE84714"  "GSE84814"  "GSE85241"  "GSE35296"  "GSE85527"  "GSE85530"  "GSE85531"  "GSE86611" 
-[46] "GSE86884"  "GSE87626"  "GSE89360"  "GSE89475"  "GSE90028"  "GSE38447"  "GSE92724"  "GSE92772"  "GSE93709" 
+[46] "GSE86884"  "GSE87626"  "GSE89360"  "GSE89475"  "GSE90028"  "GSE38447"  
+
+### Haris'
+
 [55] "GSE94019"  "GSE95243"  "GSE96562"  "GSE96563"  "GSE96564"  "GSE96568"  "GSE97084"  "GSE97205"  "GSE97591" 
+"GSE92772"  "GSE93709"  "GSE92724" 
 
 ### Chelsia's
 
@@ -138,13 +142,15 @@ SRP067701:Genes expressed differentially in glucagon-secreting α-cells and insu
 
 SRP068733:Genes expressed differentially in diabetic endothelial cells treated with SAHA:Ctrl; SRX1540354,SRX1540355,SRX1540356:SAHA; SRX1540357,SRX1540358,SRX1540359
 
+SRP068733:Genes expressed differentially in diabetic endothelial cells treated with C646:Ctrl;SRX1540354,SRX1540355,SRX1540356:C646;SRX1540360,SRX1540361,SRX1540362
 
+SRP068733:Genes expressed differentially in diabetic endothelial cells treated with ep300 siRNA compared to diabetic cells treated with DMSO:Ctrl;SRX1540354,SRX1540355,SRX1540356:ep300siRNA;SRX1540366,SRX1540367,SRX1540368
 
+SRP068733:Genes expressed differentially in diabetic endothelial cells treated with ep300 siRNA compared to non-target siRNA:Non-target;SRX1540363,SRX1540364,SRX1540365:ep300siRNA;SRX1540366,SRX1540367,SRX1540368
 
+SRP069228:Genes expressed differentially in healthy human endothelial cells treated with metaformin:Ctrl; SRX1558510,SRX1558511,SRX1558512:Meta; SRX1558513,SRX1558514,SRX1558515
 
-
-
-
+SRP069228:Genes expressed differentially in healthy human endothelial cells treated with metaformin and 30mM of D-glucose:Ctrl; SRX1558516,SRX1558517,SRX1558518:Meta;SRX1558519,SRX1558520,SRX1558521
 
 
 
