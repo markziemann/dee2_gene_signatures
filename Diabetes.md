@@ -30,6 +30,16 @@ GSE84814?*: Gene expression differentially regulated in human pluripotent stem-c
 
 GSE35296?*: Gene expression differentially regulated in human islet of Langerhans by pro-inflammatory cytokines interleukin-1β
 
+GSE85530?*: Gene expression differentially regulated in CD8+ T cells unstimulated, stimulated with anti-CD3 and anti-CD28 or stimulated with anti-CD3 and anti-CD28 and PVR-Fc treatment (3 comparison groups) 
+
+GSE85531?*: Gene expression differentially regulated in CD8+ T cells. Comparison groups can be responders, non responders and control and/or visit months.
+
+GSE86611*: Gene expression differentially regulated in human islets by Asf1B overexpression.
+
+GSE87626*?: Genes expression differentially regulated in cancer cells by the suppression of mNT. Check if related to diabetes
+
+GSE90028*: Genes expression differentially regulated in type 2 diabetic human serum samples. (Cx and HC were both control and A1C is T2 diabetes)
+
 ## Studies that don't fit criteria
 
 GSE137803: no replicates
@@ -64,12 +74,19 @@ GSE84714: Not contrasts based
 
 GSE85241: No clear/relevant contrasts
 
+GSE85527?: No contrast but similar to another study
+
+GSE86884: Not related to diabetes.
+
+GSE89360: Not related to diabetes.
+
+GSE89475: Only 2 replicates
+
+GSE38447: No replicates and ChIP-seq analysis
+
 ## Studies tbd
 
 ### Aaron's
-
-[37] "GSE85527"  "GSE85530"  "GSE85531"  "GSE86611" 
-[46] "GSE86884"  "GSE87626"  "GSE89360"  "GSE89475"  "GSE90028"  "GSE38447"  
 
 ### Haris'
 
