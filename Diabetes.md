@@ -22,23 +22,23 @@ GSE67543: Alpha vs Beta and fetal vs adult contrasts
 
 GSE76268: Gene expression differences between glucagon-secreting α-cells and insulin-secreting β-cells. add ATAC alpha vs ATAC beta
 
-GSE77108*: Gene expression regulated by HDAC inhibitors, in this case, SAHA, ep300 siRNA and C646 in diabetic and non-diabetic individuals. Add Healthy ctrl vs healthy treatment.
+GSE77108: Gene expression regulated by HDAC inhibitors, in this case, SAHA, ep300 siRNA and C646 in diabetic and non-diabetic individuals. Add Healthy ctrl vs healthy treatment.
 
 GSE77522: Gene expression regulated by treatment with metaformin in normoglycaemic and hyperglycaemic conditions
 
-GSE84814?*: Gene expression differentially regulated in human pluripotent stem-cell-derived cardiomyocytes by glucose concentration
+GSE84814?: Gene expression differentially regulated in human pluripotent stem-cell-derived cardiomyocytes by glucose concentration. Related to diabetes?
 
-GSE35296?*: Gene expression differentially regulated in human islet of Langerhans by pro-inflammatory cytokines interleukin-1β
+GSE35296: Gene expression differentially regulated in human islet of Langerhans by pro-inflammatory cytokines interleukin-1β
 
-GSE85530?*: Gene expression differentially regulated in CD8+ T cells unstimulated, stimulated with anti-CD3 and anti-CD28 or stimulated with anti-CD3 and anti-CD28 and PVR-Fc treatment (3 comparison groups) 
+GSE85530: Gene expression differentially regulated in CD8+ T cells unstimulated, stimulated with anti-CD3 and anti-CD28 or stimulated with anti-CD3 and anti-CD28 and PVR-Fc treatment (3 comparison groups). Which group comparisons
 
 GSE85531?*: Gene expression differentially regulated in CD8+ T cells. Comparison groups can be responders, non responders and control and/or visit months.
 
-GSE86611*: Gene expression differentially regulated in human islets by Asf1B overexpression.
+GSE86611: Gene expression differentially regulated in human islets by Asf1B overexpression.
 
 GSE87626*?: Genes expression differentially regulated in cancer cells by the suppression of mNT. Check if related to diabetes
 
-GSE90028*: Genes expression differentially regulated in type 2 diabetic human serum samples. (Cx and HC were both control and A1C is T2 diabetes)
+GSE90028: Genes expression differentially regulated in type 2 diabetic human serum samples. (Cx and HE were both control and A1C is T2 diabetes)
 
 ## Studies that don't fit criteria
 
@@ -169,20 +169,36 @@ SRP067701:Genes expressed differentially in glucagon-secreting α-cells and insu
 
 SRP068733:Genes expressed differentially in diabetic endothelial cells treated with SAHA:Ctrl; SRX1540354,SRX1540355,SRX1540356:SAHA; SRX1540357,SRX1540358,SRX1540359
 
-SRP068733:Genes expressed differentially in diabetic endothelial cells treated with C646:Ctrl;SRX1540354,SRX1540355,SRX1540356:C646;SRX1540360,SRX1540361,SRX1540362
+SRP068733:Genes expressed differentially in diabetic endothelial cells treated with C646:Ctrl; SRX1540354,SRX1540355,SRX1540356:C646;SRX1540360,SRX1540361,SRX1540362
 
 SRP068733:Genes expressed differentially in diabetic endothelial cells treated with ep300 siRNA compared to diabetic cells treated with DMSO:Ctrl;SRX1540354,SRX1540355,SRX1540356:ep300siRNA;SRX1540366,SRX1540367,SRX1540368
 
 SRP068733:Genes expressed differentially in diabetic endothelial cells treated with ep300 siRNA compared to non-target siRNA:Non-target;SRX1540363,SRX1540364,SRX1540365:ep300siRNA;SRX1540366,SRX1540367,SRX1540368
 
+SRP068733:Genes expressed differentially in healthy endothelial cells treated with SAHA:Ctrl;	SRX1540339,SRX1540340,SRX1540341:SAHA; SRX1540342,SRX1540343,SRX1540344
+
+SRP068733:Genes expressed differentially in healthy endothelial cells treated with C646:Ctrl; SRX1540339,SRX1540340,SRX1540341:C646; SRX1540345,SRX1540346,SRX1540347
+
+SRP068733:Genes expressed differentially in healthy endothelial cells treated with ep300 siRNA compared to healthy cells treated with DMSO:Ctrl;SRX1540339,SRX1540340,SRX1540341:ep300siRNA;	SRX1540351,SRX1540352,SRX1540353
+
+SRP068733:Genes expressed differentially in diabetic endothelial cells treated with ep300 siRNA compared to non-target siRNA:Non-target;SRX1540348,SRX1540349,SRX1540350:ep300siRNA;	SRX1540351,SRX1540352,SRX1540353
+
 SRP069228:Genes expressed differentially in healthy human endothelial cells treated with metaformin:Ctrl; SRX1558510,SRX1558511,SRX1558512:Meta; SRX1558513,SRX1558514,SRX1558515
 
 SRP069228:Genes expressed differentially in healthy human endothelial cells treated with metaformin and 30mM of D-glucose:Ctrl; SRX1558516,SRX1558517,SRX1558518:Meta;SRX1558519,SRX1558520,SRX1558521
 
+SRP079700:Gene expression differentially regulated in human pluripotent stem-cell-derived cardiomyocytes by glucose concentration 0 mM for 5 days and back to Glucose 25 mM for 5 days:Ctrl;SRX1975929,SRX1975930,SRX1975931:G0mMto25mM;	SRX1975932,SRX1975933,SRX1975934
 
+SRP079700:Gene expression differentially regulated in human pluripotent stem-cell-derived cardiomyocytes by glucose concetration of 25 mM:Ctrl;SRX1975929,SRX1975930,SRX1975931:G25mM;SRX1975935,SRX1975936,SRX1975937
 
+SRP010483:Gene expression differentially regulated in human islet of Langerhans by pro-inflammatory cytokines interleukin-1β:Ctrl; SRX117470,SRX117472,SRX117474,SRX117476,SRX117478:interleukin-1β;SRX117471,SRX117473,SRX117475,SRX117477,SRX117479
 
+SRP081574:Gene expression differentially regulated in CD8+ T cells stimulated with anti-CD3 and anti-CD28:Ctrl;SRX2018467,SRX2018468,SRX2018469,SRX2018470,SRX2018471,SRX2018472,SRX2018473,SRX2018474:StimUntreat; SRX2018475,SRX2018476,SRX2018477,SRX2018478,SRX2018479,SRX2018480,SRX2018481,SRX2018489,SRX2018490,SRX2018491,SRX2018492,SRX2018493,SRX2018494,SRX2018495,SRX2018501,SRX2018502,SRX2018503,SRX2018504,SRX2018505,SRX2018506,SRX2018507,SRX2018508,SRX2018509,SRX2018516,SRX2018517,SRX2018518,SRX2018519,SRX2018520,SRX2018522,SRX2018524
 
+SRP081574:Gene expression differentially regulated in CD8+ T cells stimulated with anti-CD3 and anti-CD28 and PVR-Fc treatment:Ctrl;Ctrl;SRX2018467,SRX2018468,SRX2018469,SRX2018470,SRX2018471,SRX2018472,SRX2018473,SRX2018474:StimTreat;	SRX2018482,SRX2018483,SRX2018484,SRX2018485,SRX2018486,SRX2018487,SRX2018488,SRX2018496,SRX2018497,SRX2018498,SRX2018499,	SRX2018510,SRX2018511,SRX2018512,SRX2018513,SRX2018514,SRX2018515,SRX2018521,SRX2018523,SRX2018525,SRX2018526,SRX2018527,SRX2018528,SRX2018529
 
+SRP081574:Gene expression differentially regulated in CD8+ T cells stimulated with anti-CD3 and anti-CD28 vs anti-CD3 and anti-CD28 and PVR-Fc treatment:StimUntreat; SRX2018475,SRX2018476,SRX2018477,SRX2018478,SRX2018479,SRX2018480,SRX2018481,SRX2018489,SRX2018490,SRX2018491,SRX2018492,SRX2018493,SRX2018494,SRX2018495,SRX2018501,SRX2018502,SRX2018503,SRX2018504,SRX2018505,SRX2018506,SRX2018507,SRX2018508,SRX2018509,SRX2018516,SRX2018517,SRX2018518,SRX2018519,SRX2018520,SRX2018522,SRX2018524:StimTreat; SRX2018482,SRX2018483,SRX2018484,SRX2018485,SRX2018486,SRX2018487,SRX2018488,SRX2018496,SRX2018497,SRX2018498,SRX2018499,	SRX2018510,SRX2018511,SRX2018512,SRX2018513,SRX2018514,SRX2018515,SRX2018521,SRX2018523,SRX2018525,SRX2018526,SRX2018527,SRX2018528,SRX2018529
 
+SRP087720:Gene expression differentially regulated in human islets by Asf1B overexpression:Ctrl; SRX2153424,SRX2153425,SRX2153426,SRX2153427,SRX2153428,SRX2153429,SRX2153430,SRX2153431,SRX2153432,SRX2153433:Asf1B;	SRX2153434,SRX2153435,SRX2153436,SRX2153437,SRX2153438,SRX2153439,SRX2153440,SRX2153441,SRX2153442,SRX2153443
 
+SRP093728:Genes expression differentially regulated in type 2 diabetic human serum samples:Ctrl;SRX2359251,SRX2359252,SRX2359253,SRX2359254,SRX2359255,SRX2359256,SRX2359257,SRX2359258,SRX2359268,SRX2359269,SRX2359270,SRX2359271,SRX2359272,SRX2359273,SRX2359274,SRX2359275:T2DM;	SRX2359235,SRX2359236,SRX2359237,SRX2359238,SRX2359239,SRX2359240,SRX2359241
