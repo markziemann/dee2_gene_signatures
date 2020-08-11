@@ -208,7 +208,7 @@ GSE121893: Less than 3 replicates.
 
 GSE47399: Study not relevant to heart disease.
 
-GSE49716: Less than 3 replicates.
+GSE49716: Less than 3 replicates
 
 ## Haris's Contrasts
 
