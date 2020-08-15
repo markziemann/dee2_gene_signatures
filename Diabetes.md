@@ -26,17 +26,17 @@ GSE77108: Gene expression regulated by HDAC inhibitors, in this case, SAHA, ep30
 
 GSE77522: Gene expression regulated by treatment with metaformin in normoglycaemic and hyperglycaemic conditions
 
-GSE84814?: Gene expression differentially regulated in human pluripotent stem-cell-derived cardiomyocytes by glucose concentration. Related to diabetes?
+GSE84814?: Gene expression differentially regulated in human pluripotent stem-cell-derived cardiomyocytes by glucose concentration. Change control group categorisation
 
 GSE35296: Gene expression differentially regulated in human islet of Langerhans by pro-inflammatory cytokines interleukin-1β
 
 GSE85530: Gene expression differentially regulated in CD8+ T cells unstimulated, stimulated with anti-CD3 and anti-CD28 or stimulated with anti-CD3 and anti-CD28 and PVR-Fc treatment (3 comparison groups). Which group comparisons
 
-GSE85531?*: Gene expression differentially regulated in CD8+ T cells. Comparison groups can be responders, non responders and control and/or visit months.
+GSE85531*: Gene expression differentially regulated in CD8+ T cells. Comparison groups can be responders, non responders and control and/or visit months.
 
 GSE86611: Gene expression differentially regulated in human islets by Asf1B overexpression.
 
-GSE87626*?: Genes expression differentially regulated in cancer cells by the suppression of mNT. Check if related to diabetes
+GSE87626*: Genes expression differentially regulated in cancer cells by the suppression of mNT.
 
 GSE90028: Genes expression differentially regulated in type 2 diabetic human serum samples. (Cx and HE were both control and A1C is T2 diabetes)
 
@@ -58,7 +58,7 @@ GSE140064: no replicates
 
 GSE55567: no replicates
 
-GSE63887?: no clear differentiation between datasets (i.e. no ctrl vs study or something like this) and therefore contrast doesn't seem possible without another study or more data
+GSE63887: no clear differentiation between datasets (i.e. no ctrl vs study or something like this) and therefore contrast doesn't seem possible without another study or more data
 
 GSE67141: not directly related to diabetes also no replicates
 
@@ -74,7 +74,7 @@ GSE84714: Not contrasts based
 
 GSE85241: No clear/relevant contrasts
 
-GSE85527?: No contrast but similar to another study
+GSE85527: Single cell RNA seq
 
 GSE86884: Not related to diabetes.
 
@@ -88,10 +88,11 @@ GSE38447: No replicates and ChIP-seq analysis
 
 ### Aaron's
 
+ "GSE97205"  "GSE97591" "GSE92772"  "GSE93709"  "GSE92724" "GSE97084" 
+
 ### Haris'
 
-[55] "GSE94019"  "GSE95243"  "GSE96562"  "GSE96563"  "GSE96564"  "GSE96568"  "GSE97084"  "GSE97205"  "GSE97591" 
-"GSE92772"  "GSE93709"  "GSE92724" 
+[55] "GSE94019"  "GSE95243"  "GSE96562"  "GSE96563"  "GSE96564"  "GSE96568"  
 
 ### Chelsia's
 
