@@ -26,7 +26,7 @@ GSE77108: Gene expression regulated by HDAC inhibitors, in this case, SAHA, ep30
 
 GSE77522: Gene expression regulated by treatment with metaformin in normoglycaemic and hyperglycaemic conditions
 
-GSE84814?: Gene expression differentially regulated in human pluripotent stem-cell-derived cardiomyocytes by glucose concentration. Change control group categorisation
+GSE84814: Gene expression differentially regulated in human pluripotent stem-cell-derived cardiomyocytes by glucose concentration. Change control group categorisation
 
 GSE35296: Gene expression differentially regulated in human islet of Langerhans by pro-inflammatory cytokines interleukin-1β
 
@@ -66,13 +66,13 @@ GSE50386: Pancreatic islets from 6 donors and separate populations of alpha, bet
 
 GSE106177: Human primary cardiac mesenchymal cells (CMSC) from 7 diabetic (D) and 7 non-diabetic (ND) donors were analyzed after few rounds of ex vivo expansion
 
-GSE97205?*: Addipose tissue comparisons. Unclear which would be control and some samples do not have sufficient replications
+GSE97205*: Addipose tissue comparisons. fiBAT vs OME vs SUB
 
-GSE92772?*: Whole blood cells, normal glucose tolerant vs gestational diabetes. Labels not clear (all samples seem to be ctrl) and different RNA sequencing.
+GSE92772*: Whole blood cells, normal glucose tolerant vs gestational diabetes. Two different contrasts for different sequencing
 
 GSE92724*: Diabetic patients (Pat) vs Ctrl
 
-GSE97084*?: Exercise programs related to protein expression, including insulin sensitivity. 
+GSE97084*: Exercise programs related to protein expression, including insulin sensitivity. Compare young vs young and old vs old (pre vs post) for each different training.
 
 ## Studies that don't fit criteria
 
