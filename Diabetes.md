@@ -32,11 +32,11 @@ GSE35296: Gene expression differentially regulated in human islet of Langerhans 
 
 GSE85530: Gene expression differentially regulated in CD8+ T cells unstimulated, stimulated with anti-CD3 and anti-CD28 or stimulated with anti-CD3 and anti-CD28 and PVR-Fc treatment (3 comparison groups). Which group comparisons
 
-GSE85531*: Gene expression differentially regulated in CD8+ T cells. Comparison groups can be responders, non responders and control and/or visit months.
+GSE85531: Gene expression differentially regulated in CD8+ T cells. Comparison groups can be responders, non responders and control and/or visit months.
 
 GSE86611: Gene expression differentially regulated in human islets by Asf1B overexpression.
 
-GSE87626*: Genes expression differentially regulated in cancer cells by the suppression of mNT.
+GSE87626: Genes expression differentially regulated in cancer cells by the suppression of mNT.
 
 GSE90028: Genes expression differentially regulated in type 2 diabetic human serum samples. (Cx and HE were both control and A1C is T2 diabetes)
 
@@ -66,13 +66,18 @@ GSE50386: Pancreatic islets from 6 donors and separate populations of alpha, bet
 
 GSE106177: Human primary cardiac mesenchymal cells (CMSC) from 7 diabetic (D) and 7 non-diabetic (ND) donors were analyzed after few rounds of ex vivo expansion
 
-GSE97205*: Addipose tissue comparisons. fiBAT vs OME vs SUB
+GSE97205: Addipose tissue comparisons. fiBAT vs OME vs SUB
 
-GSE92772*: Whole blood cells, normal glucose tolerant vs gestational diabetes. Two different contrasts for different sequencing
+GSE92772: Whole blood cells, normal glucose tolerant vs gestational diabetes. Two different contrasts for different sequencing
 
-GSE92724*: Diabetic patients (Pat) vs Ctrl
+GSE92724: Diabetic patients (Pat) vs Ctrl
 
-GSE97084*: Exercise programs related to protein expression, including insulin sensitivity. Compare young vs young and old vs old (pre vs post) for each different training.
+GSE97084: Exercise programs related to protein expression, including insulin sensitivity. Compare young vs young and old vs old (pre vs post) for each different training.
+
+GSE94019: non-diabetic retinal endothelial cells versus proliferative diabetic retinopathy fibrovascular membrane endothelial cells 
+
+GSE96563: Bulk-cell RNA-SEQ of unstimulated, anti-CD3 anti-CD28 stimulated and tetramer stimulated T cell clones
+
 
 ## Studies that don't fit criteria
 
@@ -142,6 +147,15 @@ GSE97591: No replications
 
 GSE93709: No replications
 
+GSE95243: not related to diabetes
+
+GSE96562: single-cell RNA-SEQ not included
+
+GSE96564: single-cell RNA-seq of CD8+ influenza-reactive T cells
+
+GSE96568: single-cell RNA-seq not included
+
+
 ## Studies tbd
 
 ### Aaron's
@@ -152,9 +166,6 @@ GSE93709: No replications
 
 ### Chelsia's
 
-[64] "GSE97647"  "GSE97655"  "GSE98485"  "GSE99068"  "GSE101207" "GSE102371" "GSE102498" "GSE106148" "GSE106177"
-[73] "GSE106520" "GSE108413" "GSE109140" "GSE109265" "GSE110935" "GSE111876" "GSE114051" "GSE116369" "GSE116559"
-[82] "GSE117469" "GSE44639"  "GSE120299" "GSE120904" "GSE50386" 
 
 
 ## Contrast
@@ -347,3 +358,44 @@ SRP029281:beta versus exocrine cells:beta;SRX340816,SRX340818,SRX340820:exocrine
 
 SRP121799:diabetic versus non-diabetic CMSC:diabetic;SRX3327085,SRX3327086,
 SRX3327087,SRX3327088,SRX3327089,SRX3327090,SRX3327091:non-diabetic;SRX3327092,SRX3327093,SRX3327094,SRX3327095,SRX3327096,SRX3327097,SRX3327098;
+
+SRP081605: Genes expressed differentially in whole blood samples in responders vs control in teplizumab treatment after 6 months:Ctrl;	SRX2018880,SRX2018882,SRX2018885,SRX2018887,SRX2018889,SRX2018892,SRX2018895,SRX2018896,SRX2018897,SRX2018905,	SRX2018908,SRX2018909,SRX2018911,SRX2018913,SRX2018914:Responders;	SRX2018890,SRX2018891,SRX2018893,SRX2018900,	SRX2018901,SRX2018902,SRX2018906,SRX2018910,SRX2018915,SRX2018916,SRX2018919,SRX2018920,SRX2018875,SRX2018876,	SRX2018884,SRX2018888
+
+SRP081605: Genes expressed differentially in whole blood samples in responders vs non-responders in teplizumab treatment after 6 months:Non-responders; SRX2018922,SRX2018877,SRX2018878,SRX2018879,SRX2018881,SRX2018883,SRX2018886,SRX2018894,	SRX2018898,	SRX2018899,SRX2018903,SRX2018904,SRX2018907,SRX2018912,	SRX2018917,SRX2018921,SRX2018918:Responders; SRX2018890,SRX2018891,SRX2018893,SRX2018900,SRX2018901,SRX2018902,SRX2018906,SRX2018910,SRX2018915,SRX2018916,SRX2018919,SRX2018920,SRX2018875,SRX2018876,SRX2018884,SRX2018888
+
+SRP081605: Genes expressed differentially in whole blood samples in responders vs control in teplizumab treatment after 12 months:Ctrl;	SRX2018789,SRX2018791,SRX2018793,SRX2018795,SRX2018797,SRX2018798,SRX2018801,SRX2018802,SRX2018805,SRX2018806,	SRX2018807,SRX2018810,SRX2018817,SRX2018818,SRX2018823,SRX2018826:Responders;	SRX2018814,SRX2018816,SRX2018819,SRX2018820,	SRX2018824,SRX2018825,SRX2018827,SRX2018813,SRX2018787,SRX2018799,SRX2018803,SRX2018808,SRX2018809
+
+SRP081605: Genes expressed differentially in whole blood samples in responders vs non-responders in teplizumab treatment after 12 months:Non-responders; SRX2018788,SRX2018790,SRX2018792,SRX2018794,SRX2018796,SRX2018800,SRX2018804,SRX2018811,SRX2018812,SRX2018815,SRX2018821,SRX2018822,SRX2018828,SRX2018829:Responders;SRX2018814,SRX2018816,SRX2018819,SRX2018820,	SRX2018824,SRX2018825,SRX2018827,SRX2018813,SRX2018787,SRX2018799,SRX2018803,SRX2018808,SRX2018809
+
+SRP081605: Genes expressed differentially in whole blood samples in responders vs control in teplizumab treatment after 24 months:Ctrl;	SRX2018923,SRX2018929,SRX2018932,SRX2018935,SRX2018937,SRX2018941,SRX2018943,SRX2018945,SRX2018953,	SRX2018956,	SRX2018959,SRX2018960,SRX2018961,SRX2018964,SRX2018965,SRX2018968,SRX2018973:Responders; SRX2018924,SRX2018931,SRX2018936,	SRX2018938,SRX2018939,SRX2018940,SRX2018942,SRX2018948,SRX2018949,SRX2018950,SRX2018954,SRX2018957,	SRX2018966,SRX2018967,SRX2018970,SRX2018971,SRX2018972
+
+SRP081605: Genes expressed differentially in whole blood samples in responders vs non-responders in teplizumab treatment after 24 months:non-responders; SRX2018925,SRX2018926,SRX2018927,SRX2018928,SRX2018930,SRX2018933,SRX2018934,SRX2018944,SRX2018946,SRX2018947,SRX2018951,SRX2018952,SRX2018955,SRX2018958,SRX2018962,SRX2018963,SRX2018969,SRX2018974,SRX2018975,SRX2018976:Responders; SRX2018924,SRX2018931,SRX2018936,SRX2018938,SRX2018939,SRX2018940,SRX2018942,SRX2018948,SRX2018949,SRX2018950,SRX2018954,SRX2018957,SRX2018966,SRX2018967,SRX2018970,SRX2018971,SRX2018972
+
+SRP090853: Genes expressed differentially regulated in cancer cells by the suppression of mNT:Ctrl; SRX2210964,SRX2210965,SRX2210966:mNTsupres;SRX2210967,SRX2210968,SRX2210969
+
+SRP102710: Genes expressed differentially in brown adipose tissue vs omental fat:BAT;	SRX2683725,SRX2683726,SRX2683727,SRX2683728:OME;	SRX2683729,SRX2683730,SRX2683731
+
+SRP102710: Genes expressed differentially in brown adipose tissue vs subcutaneous fat:BAT;SRX2683725,SRX2683726,SRX2683727,SRX2683728:SUB; 	SRX2683732,SRX2683733,SRX2683734
+
+SRP102710: Genes expressed differentially in omental fat vs subcutaneous fat:OME;	SRX2683729,SRX2683730,SRX2683731:SUB; 	SRX2683732,SRX2683733,SRX2683734
+
+SRP095538: Genes expressed differentially in glucose tolerant vs gestational diabetes sncRNA-Seq:Ctrl;SRX2440262,SRX2440264,SRX2440266,SRX2440268,SRX2440270,SRX2440272,SRX2440274,SRX2440276:GDM; SRX2440263,SRX2440265,SRX2440267,SRX2440269,SRX2440271,SRX2440273,SRX2440275,SRX2440277
+
+SRP095538: Genes expressed differentially in glucose tolerant vs gestational diabetes RNA-Seq:Ctrl;	SRX2440278,SRX2440280,SRX2440282,SRX2440284,SRX2440286,SRX2440288,SRX2440290,SRX2440292:GDM;	SRX2440279,SRX2440281,SRX2440283,SRX2440285,SRX2440287,SRX2440289,SRX2440291,SRX2440293
+
+SRP095512: Genes expressed differentially in health vs diabetic dermal endothelial cells:Ctrl; SRX2439830,SRX2439835,SRX2439836,SRX2439837,SRX2439838,SRX2439839:T2D; SRX2439831,SRX2439832,SRX2439833,SRX2439834
+
+SRP102542: Genes expressed differentially in young people who do HIIT training:Ctrl;SRX2676303,SRX2676313,SRX2676315,SRX2676327, SRX2676329,SRX2676333,SRX2676346,SRX2676352,SRX2676360,SRX2676364,SRX2676396:HIIT;	SRX2676304,SRX2676314,SRX2676316,SRX2676328,SRX2676330,SRX2676334,SRX2676347,SRX2676353,SRX2676361,SRX2676365,SRX2676397
+
+SRP102542: Genes expressed differentially in young people who do Resistance training:Ctrl;	SRX2676305,SRX2676309,SRX2676311,SRX2676317,SRX2676331,SRX2676338,SRX2676342,SRX2676348,SRX2676358,SRX2676362:Resis:SRX2676306,SRX2676312,SRX2676310,SRX2676318,SRX2676332,SRX2676339,SRX2676343,SRX2676349,SRX2676359,SRX2676363
+
+
+
+SRP097696: retinal endothelial cells from non-diabetic controls versus fibrovascular membrane endothelial cells from proliferative diabetic retinopathy: non-diabetic control; SRX2513447, SRX2513448, SRX2513458, SRX2513459: proliferative diabetic retinopathy; SRX2513449, SRX2513450, SRX2513451, SRX2513452, SRX2513453, SRX2513454, SRX2513455, SRX2513456, SRX2513457;
+
+SRP101810: bulk-cell RNA-seq of unstimulated T cell clone versus anti-CD3 anti-CD28 monoclonal antibodies stimulated T cell clone: unstimulated T cell clone; SRX2637128, SRX2637129, SRX2637130: anti-CD3 anti-CD28 stimulated T cell clone; SRX2637126, SRX2637131, SRX2637133;
+
+SRP101810: bulk-cell RNA-seq of unstimulated T cell clone versus GAD peptide-loaded tetramer stimulated T cell clone: unstimulated T cell clone; SRX2637128, SRX2637129, SRX2637130: tetramer stimulated T cell clone; SRX2637127, SRX2637132, SRX2637134;
+
+SRP101810: bulk-cell RNA-seq of anti-CD3 anti-CD28 monoclonal antibodies stimulated T cell clone versus GAD peptide-loaded tetramer stimulated T cell clone: anti-CD3 anti-CD28 stimulated T cell clone; SRX2637126, SRX2637131, SRX2637133: tetramer stimulated T cell clone; SRX2637127, SRX2637132, SRX2637134;
+
