@@ -1,7 +1,5 @@
 ## Studies that fit the criteria
 
-### Haris's Studies 
-
 GSE138531: 3 stenotic vs 3 sclerotic human aortic valve samples. Do one as a control and one as treatment. 
 
 GSE141910: Left ventricular transcriptomes of non-failing healthy donors, Peripartum cardiomyopathy (PPCM), Hypertrophic cardiomyopathy (HCM) and Dilated cardiomyopathy (DCM) samples.
@@ -27,8 +25,6 @@ GSE36759: Right ventricular small RNA-seq profiles from 22 patients with Tetralo
 GSE36761: Right ventricular mRNA-seq profiles from 22 patients with Tetralogy of Fallot and small RNA-seq profiles from the left and right ventricle of 4 healthy unaffected individuals. 
 
 GSE89714: Control vs heart tissue of hypertrophic cardiomyopathy patients.
-
-### Chelsia's Studies
 
 GSE95120: Control vs Cardiac stromal cells from Arrhythmogenic cardiomyopathy patients.
 
@@ -210,7 +206,7 @@ GSE47399: Study not relevant to heart disease.
 
 GSE49716: Less than 3 replicates
 
-## Haris's Contrasts
+## Contrasts
 
 SRP224657: aortic valve stenosis versus aortic valve sclerosis: stenosis; SRX6959190, SRX6959191, SRX6959192: sclerosis; SRX6959193, SRX6959194, SRX6959195;
 
@@ -257,8 +253,6 @@ SRP011923: smallRNA profiles of healthy right verntricle control versus Tetralog
 SRP011924: mRNA profiles of healthy right verntricle control versus Tetralogy of Fallot (TOF) right ventricle: control; SRX131414!!!, SRX131416, SRX131418, SRX131420: TOF; SRX131421, SRX131422, SRX131423, SRX131424, SRX131425, SRX131426, SRX131427, SRX131428, SRX131429, SRX131430, SRX131431, SRX131432, SRX131433, SRX131434, SRX131435, SRX131436, SRX131437, SRX131438, SRX131439, SRX131440, SRX131441, SRX131442;
 
 SRP093240: gene expression differential - normal control versus hypertrophic cardiomyopathy (HCM): control; SRX2339810, SRX2339811, SRX2339812, SRX2339813: HCM; SRX2339805, SRX2339806, SRX2339807, SRX2339808, SRX2339809;
-
-### Chelsia's contrasts
 
 SRP026208:left ventricular control myocardial samples versus ischemic cardiomyopathy (ICM) sample: control; SRX312124, SRX312125, SRX312126,	SRX312127, SRX312128, SRX312129, SRX312130,	SRX312131, SRX312132, SRX312133, SRX312134, SRX312135, SRX312136, SRX312137,	SRX312138, SRX312139: ICM samples; SRX312140, SRX312141,	SRX312142, SRX312143, SRX312144, SRX312145,	SRX3121246,	SRX312147, SRX312148,	SRX312149, SRX312150,	SRX312151, SRX312152, SRX312153, SRX312154,	SRX312155;
 
