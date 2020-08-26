@@ -1,11 +1,16 @@
 suppressPackageStartupMessages({
+  # cran
   library("devtools")
-  #devtools::install_github("markziemann/getDEE2")
+  library("ActivePathways")
+  library("gplots") 
+  
+  # bioconductor
   library("getDEE2")
   library("DESeq2")
   library("edgeR")
-  library("gplots") 
-})
+  })
+
+# tool to write gmt file
 
 
 # let's assume species is human for now
@@ -13,8 +18,11 @@ SPECIES = "hsapiens"
 
 main<-function(x1) {
   
+  message(x1)
+  
   # define the SRP
   SRP = strsplit(x1,":")[[1]][1]
+  
   
   # define contrast name
   contrast_name = strsplit(x1,":")[[1]][2]
@@ -149,11 +157,35 @@ main<-function(x1) {
     heatmap.2(  as.matrix(top), col=colfunc(25),scale="row", trace="none",
                 margins = c(6,6), cexRow=.4, cexCol = 0.6, main=SRP,
                 ColSideColors = colCols )
-  }
+
+    # curate the gene sets
+    
+    
+    if(length(up)>9) {
+      upg <- unique(sapply(strsplit(up," "),"[[",2)) 
+      setid = paste(SRP, contrast_name," upregulated",sep=":")
+      setname = paste("GeneSetCommons",SRP,as.integer(as.numeric(Sys.time())),sep=" ")
+      upgs <- list("id"=setid,"name"=setname,"genes"=upg)
+    } else {
+      upgs=NULL
+    }
+    
+    if(length(dn)>9) {
+      dng <- unique(sapply(strsplit(dn," "),"[[",2)) 
+      setid = paste(SRP, contrast_name," downregulated",sep=":")
+      setname = paste("GeneSetCommons",SRP,as.integer(as.numeric(Sys.time())),sep=" ")
+      dngs <- list("id"=setid,"name"=setname,"genes"=dng)
+    } else {
+      dngs=NULL
+    }
+    
+    mysets <- list(upgs,dngs)
+    class(mysets) <- "GMT"
+    filename = paste("GeneSetCommons",SRP,as.integer(as.numeric(Sys.time())),"gmt",sep=".")
+    if(!dir.exists("gmt")){ dir.create("gmt")}
+    write.GMT(mysets,paste("gmt/",filename))
+}
+mysession <- sessionInfo()
   
-  mysession <- sessionInfo()
-  
-  # TODO: secure copy
-  # https://www.rdocumentation.org/packages/ssh/versions/0.6/topics/scp
 }
 
