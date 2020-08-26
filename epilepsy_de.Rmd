@@ -17,7 +17,7 @@ source("de_functions.R")
 ```
 
 
-```{r,study_list}
+```{r,study_list,fig.width=8,fig.height=8}
 # let's assume species is human for now
 SPECIES = "hsapiens"
 
