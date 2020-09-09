@@ -85,6 +85,11 @@ main<-function(x1) {
   # remove failed runs - gotta be removed from metadata as well
   pass <- y$GeneCounts[,grep("FAIL",y$MetadataSummary$QC_summary,invert = TRUE)]
   dim(pass)
+  
+  if (is.null(ncol(pass))) {
+    return(paste("Only one sample available",SRP))
+  } 
+  
   if (ncol(pass)==0) {
     return(paste("No runs passing QC for",SRP))
   } else {
