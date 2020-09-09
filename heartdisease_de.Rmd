@@ -30,22 +30,24 @@ x <- x[grep("RP",x)]
 # how many contrasts to do?
 length(x)
 
+x1 <- x[[2]]
+
 # prepare by deleting the directory called "gmt"
 unlink("gmt", recursive = TRUE)
 
 # lets prototype this by 
-main(x[[1]])
+#main(x[[2]])
 
 # now go ahead and run the whole thing
 data <- sapply(x,main)
 
 # rename the folder
-unlink("gmt_epilepsy", recursive = TRUE)
-file.rename("gmt","gmt_epilepsy")
+unlink("gmt_heartdisease", recursive = TRUE)
+file.rename("gmt","gmt_heartdisease")
 
 # some things are better done with bash :)
-system("cat gmt_epilepsy/*gmt > epilepsy.gmt")
+system("cat gmt_heartdisease/*gmt > heartdisease.gmt")
 
-unlink("gmt_epilepsy", recursive = TRUE)
+unlink("gmt_heartdisease", recursive = TRUE)
 
 ```

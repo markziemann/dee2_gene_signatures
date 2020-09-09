@@ -34,7 +34,7 @@ length(x)
 unlink("gmt", recursive = TRUE)
 
 # lets prototype this by 
-main(x[[1]])
+#main(x[8])
 
 # now go ahead and run the whole thing
 data <- sapply(x,main)
