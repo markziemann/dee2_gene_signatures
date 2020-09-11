@@ -4,7 +4,7 @@
 
 ## Studies that fit the criteria
 
-GSE147507: NHBE, A549, A549 transduced with ACE2 & Calu-3 cell lines mock treatment vs. infected with SARS-CoV-2, mock treatment vs. RSV, mock treatment vs. IAV ??????
+GSE147507: NHBE, A549, A549 transduced with ACE2 & Calu-3 cell lines mock treatment vs. infected with SARS-CoV-2, mock treatment vs. RSV, mock treatment vs. IAV 
 
 GSE147194: ACE2 library (fragments A-E) variants incubated with RBD for the S1 subunit from Sars-Cov-2. 
 
@@ -39,14 +39,6 @@ SRP253951: NHBE mock treatment versus infected with IFNB (Series 9): mock;SRX808
 SRP253951: NHBE mock treatment versus infected with IFNB (Series 9): mock;SRX8089291,SRX8089292,SRX8089293,SRX8089294: IFNB;SRX8089305,SRX8089306; 6 hrs (time after treatment)
 
 SRP253951: NHBE mock treatment versus infected with IFNB (Series 9): mock;SRX8089291,SRX8089292,SRX8089293,SRX8089294: IFNB;SRX8089307,SRX8089308; 12 hrs (time after treatment)
-
-SRP253279: ACE2 (fragments A and B) versus high binding to the RBD of the S protein: ACE2;SRX7950376: high binding RBD;SRX7950378,SRX7950380;
-
-SRP253279: ACE2 (fragments A and B) versus low binding to the RBD of the S protein: ACE2;SRX7950376: low binding RBD;SRX7950382,	SRX7950384;
-
-SRP253279: ACE2 (fragments C, D and E) versus high binding to the RBD of the S protein: ACE2;SRX7950377: high binding RBD;SRX7950379,SRX7950381;
-
-SRP253279: ACE2 (fragments C, D and E) versus low binding to the RBD of the S protein: ACE2;SRX7950377: low binding RBD;	SRX7950383,SRX7950385;
 
 SRP253279: high binding to the RBD of the S protein versus low binding to the RBD of the S protein (fragments A and B): high binding RBD;SRX7950378,SRX7950380: low binding RBD;SRX7950382,SRX7950384; 
 
