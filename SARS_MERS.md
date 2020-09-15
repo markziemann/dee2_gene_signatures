@@ -1,3 +1,5 @@
+# SARS and SARS-CoV-2
+
 ## Candidate Studies 
 
 "GSE147194" "GSE147507" "GSE148729"
@@ -18,9 +20,9 @@ SRP253951: NHBE mock treatment versus infected with SARS-CoV-2 (Series 1): mock;
 
 SRP253951: A549 mock treatment versus infected with SARS-CoV-2 (Series 2): mock;SRX7990872,SRX7990873,SRX7990874: SARS-CoV-2;	SRX7990875,SRX7990876,SRX7990877;
 
-SRP253951: A549 mock treatment versus infected with RSV (Series 3): mock;SRX7990878,SRX7990879: RSV;SRX7990880,SRX7990881;
+SRP253951: A549 mock treatment versus infected with Respiratory syncytial virus (Series 3): mock;SRX7990878,SRX7990879: RSV;SRX7990880,SRX7990881;
 
-SRP253951: A549 mock treatment versus infected with IAV (Series 4): mock;SRX7990882,SRX7990883: IAV;SRX7990884,SRX7990885;
+SRP253951: A549 mock treatment versus infected with Influenza A virus (Series 4): mock;SRX7990882,SRX7990883: IAV;SRX7990884,SRX7990885;
 
 SRP253951: A549 mock treatment versus infected with SARS-CoV-2 (Series 5): mock;	SRX8089264,SRX8089265,SRX8089266: SARS-COV-2;SRX8089267,SRX8089268,	SRX8089269;
 
@@ -28,19 +30,19 @@ SRP253951: A549 induced with ACE2 mock treatment versus infected with SARS-CoV-2
 
 SRP253951: Calu3 mock treatment versus infected with SARS-CoV-2 (Series 7): mock;SRX8089276,SRX8089277,SRX8089278: SARS-CoV-2;SRX8089279,SRX8089280,SRX8089281;
 
-SRP253951: A549 mock treatment versus infected with RSV (Series 8): mock;SRX8089282,SRX8089283,SRX8089284: RSV;SRX8089285,SRX8089286,SRX8089287;
+SRP253951: A549 mock treatment versus infected with Respiratory syncytial virus ((Series 8): mock;SRX8089282,SRX8089283,SRX8089284: RSV;SRX8089285,SRX8089286,SRX8089287;
 
-SRP253951: A549 mock treatment versus infected with HPIV3 (Series 8): mock;SRX8089282,SRX8089283,SRX8089284: HPIV3;SRX8089288,SRX8089289,SRX8089290;
+SRP253951: A549 mock treatment versus infected with Human parainfluenza virus type 3 (HPIV3) (Series 8): mock;SRX8089282,SRX8089283,SRX8089284: HPIV3;SRX8089288,SRX8089289,SRX8089290;
 
-SRP253951: NHBE mock treatment versus infected with IAV (Series 9): mock;SRX8089291,SRX8089292,SRX8089293,SRX8089294: IAV;SRX8089295,SRX8089296,SRX8089297,SRX8089298;
+SRP253951: NHBE mock treatment versus infected with Influenza A virus (Series 9): mock;SRX8089291,SRX8089292,SRX8089293,SRX8089294: IAV;SRX8089295,SRX8089296,SRX8089297,SRX8089298;
 
-SRP253951: NHBE mock treatment versus infected with IAVdNS1 (Series 9): mock;SRX8089291,SRX8089292,SRX8089293,SRX8089294: IAVdSN1;SRX8089299,SRX8089300,SRX8089301,SRX8089302; 12 hrs (time afer treatment)
+SRP253951: NHBE mock treatment versus infected with Influenza A virus lacking NS1 (Series 9): mock;SRX8089291,SRX8089292,SRX8089293,SRX8089294: IAVdSN1;SRX8089299,SRX8089300,SRX8089301,SRX8089302; 12 hrs (time afer treatment)
 
-SRP253951: NHBE mock treatment versus infected with IFNB (Series 9): mock;SRX8089291,SRX8089292,SRX8089293,SRX8089294: IFNB;SRX8089303,SRX8089304; 4 hrs (time after treatment)
+SRP253951: NHBE mock treatment versus interferon beta (IFNB) treatment  (Series 9): mock;SRX8089291,SRX8089292,SRX8089293,SRX8089294: IFNB;SRX8089303,SRX8089304; 4 hrs (time after treatment)
 
-SRP253951: NHBE mock treatment versus infected with IFNB (Series 9): mock;SRX8089291,SRX8089292,SRX8089293,SRX8089294: IFNB;SRX8089305,SRX8089306; 6 hrs (time after treatment)
+SRP253951: NHBE mock treatment versus nterferon beta (IFNB) treatment (Series 9): mock;SRX8089291,SRX8089292,SRX8089293,SRX8089294: IFNB;SRX8089305,SRX8089306; 6 hrs (time after treatment)
 
-SRP253951: NHBE mock treatment versus infected with IFNB (Series 9): mock;SRX8089291,SRX8089292,SRX8089293,SRX8089294: IFNB;SRX8089307,SRX8089308; 12 hrs (time after treatment)
+SRP253951: NHBE mock treatment versus interferon beta (IFNB) treatment (Series 9): mock;SRX8089291,SRX8089292,SRX8089293,SRX8089294: IFNB;SRX8089307,SRX8089308; 12 hrs (time after treatment)
 
 SRP253279: high binding to the RBD of the S protein versus low binding to the RBD of the S protein (fragments A and B): high binding RBD;SRX7950378,SRX7950380: low binding RBD;SRX7950382,SRX7950384; 
 
@@ -128,9 +130,38 @@ SRP256479: DMSO mock infected versus 800 nM 17-AAB treated SARS-CoV-2 infected c
 
 SRP256479: DMSO mock infected versus 800 nM Ganetespib treated SARS-CoV-2 infected cells: mock infected;SRX8784719,SRX8784720,SRX8784721,SRX8784728,SRX8784729,SRX8784730: Ganetespib SARS-CoV-2 infected;SRX8784737,SRX8784738,SRX8784739;
 
+# MERS
 
+## Candidate Studies
 
+"GSE114002" "GSE139516" "GSE147194" "GSE147507" "GSE148729" "GSE47792"
 
+## Studies that fit the criteria
 
+GSE139516: expression of cirRNA, miRNA and mRNA were examined in samples of MERS-CoV infected (6hpi and 24hpi) and mock infected human lung adenocarcinoma (Calu-3) cells. 
 
+## Studies that don't fit the criteria
 
+GSE114002: Isn't about MERS
+
+GSE147194: Isn't about MERS (but about SARS-CoV-2)
+
+GSE147507: Isn't about MERS (but about SARS-CoV-2)
+
+GSE148729: Isn't about MERS (but about SARS-CoV-2)
+
+GSE47792: not about MERS
+
+## Contrasts
+
+SRP227272: Calu-3 cells mock infection versus MERS-CoV 6 hours post infection (mRNA): mock;SRX7066767,SRX7066768,SRX7066769: 6 hours post infection;SRX7066770,SRX7066771,SRX7066772;
+
+SRP227272: Calu-3 cells mock infection versus MERS-CoV 24 hours post infection (mRNA): mock;SRX7066767,SRX7066768,SRX7066769: 24 hours post infection;SRX7066773,SRX7066774,SRX7066775;
+
+SRP227272: Calu-3 cells mock infection versus MERS-CoV 6 hours post infection (miRNA): mock;SRX7066776,SRX7066777,SRX7066778: 6 hours post infection;SRX7066779,SRX7066780,SRX7066781;
+
+SRP227272: Calu-3 cells mock infection versus MERS-CoV 24 hours post infection (miRNA): mock;SRX7066776,SRX7066777,SRX7066778: 24 hours post infection;SRX7066782,SRX7066783,SRX7066784;
+
+SRP227272: Calu-3 cells mock infection versus MERS-CoV 6 hours post infection (cirRNA): mock;SRX7066785,SRX7066786,SRX7066787: 6 hours post infection;SRX7066788,SRX7066789,SRX7066790;
+
+SRP227272: Calu-3 cells mock infection versus MERS-CoV 24 hours post infection (cirRNA):mock;SRX7066785,SRX7066786,SRX7066787: 24 hours post infection;SRX7066791,SRX7066792,SRX7066793;

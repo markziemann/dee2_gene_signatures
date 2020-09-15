@@ -38,6 +38,7 @@ main<-function(x1) {
   control_data = strsplit(control,";")[[1]][2]
   control_data <- unlist(strsplit(control_data, ","))
   control_data <- gsub(" ","",control_data)
+  control_data <- unique(control_data)
   
   # get case group info
   case = strsplit(x1,":")[[1]][4]
@@ -49,7 +50,14 @@ main<-function(x1) {
   case_data = strsplit(case,";")[[1]][2]
   case_data <- unlist(strsplit(case_data, ","))
   case_data <- gsub(" ","",case_data)
+  case_data <- unique(case_data)
   
+  # Check that control and case samples do not have any common samples
+  itx <- length(intersect(control_data,case_data))
+  if (itx>0) {
+    return("Error: there are some samples marked as both controls and treatments")
+  }
+
   # set up the sample sheet starting with a list of samples
   ss <- as.data.frame(paste(c(control_data,case_data),sep=","),stringsAsFactors=FALSE)
   colnames(ss) <- SRP
@@ -64,7 +72,9 @@ main<-function(x1) {
   mm
   
   # get the data from the database
-  mdat <- getDEE2::getDEE2Metadata(species = SPECIES)
+  if (exists("mdat") == FALSE) {
+    mdat <- getDEE2::getDEE2Metadata(species = SPECIES)
+  }
   
   # filter for samples in this study
   mdat1 <- mdat[which(mdat$SRP_accession==SRP),]
@@ -108,6 +118,9 @@ main<-function(x1) {
   
   # remove genes with fewer than 10 reads
   yy <- yy[which(rowMeans(yy)>10),]
+  
+  # if after filtering there are no genes left
+  if (is.null(dim(yy))) { return("There no detected genes after filtering.") }
   
   # remove samples with fewer than 1000 expressed genes
   n_expressed_genes <- apply(yy,2,function(x) { length(which(x>10)) } ) 

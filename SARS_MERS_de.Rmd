@@ -1,5 +1,5 @@
 ---
-title: "Heart Disease"
+title: "MERS, SARS and SARS-CoV-2"
 author: "The Gene Signature Commons Group"
 date: "`r Sys.Date()`"
 output:
@@ -22,7 +22,7 @@ source("de_functions.R")
 SPECIES = "hsapiens"
 
 # read in the file
-x <- readLines("heartdisease.md")
+x <- readLines("SARS_MERS.md")
 
 # this is the best way to get studies with contrasts set up
 x <- x[grep("RP",x)]
@@ -36,19 +36,20 @@ unlink("gmt", recursive = TRUE)
 # get the metadata now to save time
 mdat <- getDEE2::getDEE2Metadata(species = SPECIES)
 
-# lets prototype this main(x[[2]])
+# lets prototype this by main(x[[2]])
+# debug like this x1 <- x[[15]]
 
 # now go ahead and run the whole thing
 data <- sapply(x,main)
 
-# rename the folder
-unlink("gmt_heartdisease", recursive = TRUE)
-file.rename("gmt","gmt_heartdisease")
+#rename the folder
+unlink("gmt_SARS_MERS", recursive = TRUE)
+file.rename("gmt","gmt_SARS_MERS")
 
 # some things are better done with bash :)
-system("cat gmt_heartdisease/*gmt > heartdisease.gmt")
+system("cat gmt_SARS_MERS/*gmt > SARS_MERS.gmt")
 
-unlink("gmt_heartdisease", recursive = TRUE)
+unlink("gmt_SARS_MERS", recursive = TRUE)
 
 ```
 

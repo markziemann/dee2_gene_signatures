@@ -33,8 +33,11 @@ length(x)
 # prepare by deleting the directory called "gmt"
 unlink("gmt", recursive = TRUE)
 
-# lets prototype this by 
-#main(x[8])
+# get the metadata now to save time
+mdat <- getDEE2::getDEE2Metadata(species = SPECIES)
+
+# lets prototype this: main(x[[2]])
+# debug like this: x1 <- x[[6]]
 
 # now go ahead and run the whole thing
 data <- sapply(x,main)
@@ -48,4 +51,9 @@ system("cat gmt_epilepsy/*gmt > epilepsy.gmt")
 
 unlink("gmt_epilepsy", recursive = TRUE)
 
+```
+
+
+```{r,sessioninfo}
+sessionInfo()
 ```
