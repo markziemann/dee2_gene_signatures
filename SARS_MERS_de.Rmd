@@ -36,8 +36,8 @@ unlink("gmt", recursive = TRUE)
 # get the metadata now to save time
 mdat <- getDEE2::getDEE2Metadata(species = SPECIES)
 
-# lets prototype this by main(x[[2]])
-# debug like this x1 <- x[[15]]
+# lets prototype this: main(x[[2]])
+# debug like this: x1 <- x[[15]]
 
 # now go ahead and run the whole thing
 data <- sapply(x,main)

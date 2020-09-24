@@ -1,0 +1,87 @@
+---
+title: "analysing gene sets"
+author: "The Gene Signature Commons Group"
+date: "`r Sys.Date()`"
+output:
+  html_document
+---
+Source: https://github.com/markziemann/gene_sig_commons
+
+## Background
+
+In this analysis we will be characterising the new gene sets.
+
+## Libraries
+
+```{r, libs}
+library("getDEE2")
+library("mitch")
+library("triwise")
+library("dplyr")
+library("gplots")
+
+```
+
+
+## Reference gene sets
+
+Here I download the current Reactome gene set library.
+
+```{r,external}
+download.file("https://reactome.org/download/current/ReactomePathways.gmt.zip", destfile="ReactomePathways.gmt.zip")
+unzip("ReactomePathways.gmt.zip")
+reactome <- gmt_import("ReactomePathways.gmt")
+str(head(reactome))
+```
+## Reference gene list
+
+This is the background - all genes in the "universe"
+
+```{r,genelist}
+md <- getDEE2Metadata("hsapiens")
+srr <- md[grep("PASS",md$QC_summary)[1],1]
+dat <- getDEE2::getDEE2(species="hsapiens",SRRvec = srr , mmetadata = md,legacy = TRUE)
+universe <- dat$GeneInfo$GeneSymbol
+```
+
+
+
+
+## Epilepsy
+
+Let's take a look at the epilepsy gene sets.
+```{r,fig.width=10,fig.height=8}
+epi <- gmt_import("epilepsy.gmt")
+numgenes <- unlist(lapply(epi,length))
+hist(numgenes,breaks = 15, xlab="number of genes per set",main="")
+
+
+ora <- function(gs,genesets,universe){ 
+  res <- triwise::testEnrichment(gs, genesets, universe, minknown = 3, mindiffexp = 2, maxknown = 5000)
+  res <- res[order(res$pval),]
+  res <- head(res,5)
+  hits <- log(res[which(res$qval<0.01),2])
+  names(hits) <- res[which(res$qval<0.01),4]
+  return(hits)
+}
+
+res <- lapply(epi, function(x) { ora(gs=x,genesets=reactome, universe=universe)  }  )
+str(res)
+
+myres <- bind_rows(lapply(res, as.data.frame.list))
+myres[is.na(myres)] <- 0
+rownames(myres) <- names(res)
+heatmap.2(as.matrix(myres),trace="none",margin=c(10,15),cexRow = 0.7,dendrogram = "none")
+
+
+```
+
+
+
+
+## Session information
+
+```{r sessioninfo}
+sessionInfo()
+```
+
