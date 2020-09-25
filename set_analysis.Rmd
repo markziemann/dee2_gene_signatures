@@ -169,7 +169,7 @@ rownames(mydf) <- names(diab)
 mydf_n <- mydf/rowSums(mydf)
 mydf <- mydf[,head(order(-colSums(mydf_n)),8)]
 colfunc <- colorRampPalette(c("white", "yellow","orange","red","darkred"))(n=25)
-heatmap.2(as.matrix(mydf),col=colfunc,trace="none",margin=c(10,15),cexCol = 0.8, cexRow = 0.7,scale="row",dendrogram = "none",main="Diabetes gene sets by biotype",na.color = "white")
+heatmap.2(as.matrix(mydf),col=colfunc,trace="none",margin=c(10,30),cexCol = 0.6, cexRow = 0.2 ,scale="row",dendrogram = "none",main="Diabetes gene sets by biotype",na.color = "white")
 
 mydf_n[is.na(mydf_n)] <- 0
 mytable <-colSums(mydf_n)
@@ -185,7 +185,7 @@ myres <- bind_rows(lapply(res, as.data.frame.list))
 myres[is.na(myres)] <- 0
 rownames(myres) <- names(res)
 colfunc <- colorRampPalette(c("white", "lightblue","blue", "darkblue"))(n=25)
-heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.7,dendrogram = "none",main="Diabetes gene sets by Reactome enrichment")
+heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.2, cexCol = 0.3 ,dendrogram = "none",main="Diabetes gene sets by Reactome enrichment")
 ```
 
 
@@ -208,7 +208,7 @@ rownames(mydf) <- names(hd)
 mydf_n <- mydf/rowSums(mydf)
 mydf <- mydf[,head(order(-colSums(mydf_n)),8)]
 colfunc <- colorRampPalette(c("white", "yellow","orange","red","darkred"))(n=25)
-heatmap.2(as.matrix(mydf),col=colfunc,trace="none",margin=c(10,15),cexCol = 0.8, cexRow = 0.7,scale="row",dendrogram = "none",main="Heart disease gene sets by biotype",na.color = "white")
+heatmap.2(as.matrix(mydf),col=colfunc,trace="none",margin=c(10,30),cexCol = 0.8, cexRow = 0.5,scale="row",dendrogram = "none",main="Heart disease gene sets by biotype",na.color = "white")
 
 mydf_n[is.na(mydf_n)] <- 0
 mytable <-colSums(mydf_n)
@@ -224,7 +224,7 @@ myres <- bind_rows(lapply(res, as.data.frame.list))
 myres[is.na(myres)] <- 0
 rownames(myres) <- names(res)
 colfunc <- colorRampPalette(c("white", "lightblue","blue", "darkblue"))(n=25)
-heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.7,dendrogram = "none",main="Heart disease gene sets by Reactome enrichment")
+heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.5, cexCol = 0.5, dendrogram = "none",main="Heart disease gene sets by Reactome enrichment")
 ```
 
 ## SARS, MERS and SARS-CoV-2
@@ -246,7 +246,7 @@ rownames(mydf) <- names(sars)
 mydf_n <- mydf/rowSums(mydf)
 mydf <- mydf[,head(order(-colSums(mydf_n)),8)]
 colfunc <- colorRampPalette(c("white", "yellow","orange","red","darkred"))(n=25)
-heatmap.2(as.matrix(mydf),col=colfunc,trace="none",margin=c(10,15),cexCol = 0.8, cexRow = 0.7,scale="row",dendrogram = "none",main="SARS, MERS and SARS-CoV2 gene sets by biotype",na.color = "white")
+heatmap.2(as.matrix(mydf),col=colfunc,trace="none",margin=c(10,30),cexCol = 0.8, cexRow = 0.5,scale="row",dendrogram = "none",main="SARS, MERS and SARS-CoV2 gene sets by biotype",na.color = "white")
 
 mydf_n[is.na(mydf_n)] <- 0
 mytable <-colSums(mydf_n)
@@ -262,7 +262,7 @@ myres <- bind_rows(lapply(res, as.data.frame.list))
 myres[is.na(myres)] <- 0
 rownames(myres) <- names(res)
 colfunc <- colorRampPalette(c("white", "lightblue","blue", "darkblue"))(n=25)
-heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.7,dendrogram = "none",main="SARS, MERS and SARS-CoV-2 gene sets genes by Reactome enrichment")
+heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.5, cexCol = 0.4,dendrogram = "none",main="SARS, MERS and SARS-CoV-2 gene sets genes by Reactome enrichment")
 ```
 
 
