@@ -42,41 +42,97 @@ md <- getDEE2Metadata("hsapiens")
 srr <- md[grep("PASS",md$QC_summary)[1],1]
 dat <- getDEE2::getDEE2(species="hsapiens",SRRvec = srr , mmetadata = md,legacy = TRUE)
 universe <- dat$GeneInfo$GeneSymbol
+length(universe)
 ```
 
-
+```{r,orafunc}
+ora <- function(gs,genesets,universe){ 
+  res <- triwise::testEnrichment(gs, genesets, universe, minknown = 3, mindiffexp = 2, maxknown = 5000)
+  if( nrow(res)>0 ) {
+    res <- res[order(res$pval),]
+    res <- head(res,5)
+    hits <- log(res[which(res$qval<0.01),2])
+    names(hits) <- res[which(res$qval<0.01),4]
+    return(hits)
+  } else {
+    return(0)
+  }
+}
+```
 
 
 ## Epilepsy
 
 Let's take a look at the epilepsy gene sets.
-```{r,fig.width=10,fig.height=8}
+```{r,epilepsy,fig.width=10,fig.height=8}
 epi <- gmt_import("epilepsy.gmt")
+epi <- epi[which(!duplicated(names(epi)))]
 numgenes <- unlist(lapply(epi,length))
-hist(numgenes,breaks = 15, xlab="number of genes per set",main="")
-
-
-ora <- function(gs,genesets,universe){ 
-  res <- triwise::testEnrichment(gs, genesets, universe, minknown = 3, mindiffexp = 2, maxknown = 5000)
-  res <- res[order(res$pval),]
-  res <- head(res,5)
-  hits <- log(res[which(res$qval<0.01),2])
-  names(hits) <- res[which(res$qval<0.01),4]
-  return(hits)
-}
-
+hist(numgenes,breaks = 15, xlab="number of genes per set",main="Epilepsy gene sets")
 res <- lapply(epi, function(x) { ora(gs=x,genesets=reactome, universe=universe)  }  )
-str(res)
-
+res <- res[which(lapply(res,length)>0)]
 myres <- bind_rows(lapply(res, as.data.frame.list))
 myres[is.na(myres)] <- 0
 rownames(myres) <- names(res)
-heatmap.2(as.matrix(myres),trace="none",margin=c(10,15),cexRow = 0.7,dendrogram = "none")
-
-
+colfunc <- colorRampPalette(c("white", "blue"))
+heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.7,dendrogram = "none",main="epilepsy")
 ```
 
 
+## Diabetes
+
+Let's take a look at the diabetes gene sets.
+
+```{r,diabetes,fig.width=12,fig.height=8}
+diab <- gmt_import("diabetes.gmt")
+diab <- diab[which(!duplicated(names(diab)))]
+numgenes <- unlist(lapply(diab,length))
+hist(numgenes,breaks = 15, xlab="number of genes per set",main="Diabetes gene sets")
+res <- lapply(diab, function(x) { ora(gs=x,genesets=reactome, universe=universe)  }  )
+res <- res[which(lapply(res,length)>0)]
+myres <- bind_rows(lapply(res, as.data.frame.list))
+myres[is.na(myres)] <- 0
+rownames(myres) <- names(res)
+colfunc <- colorRampPalette(c("white", "blue"))
+heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.7,dendrogram = "none",main="diabetes")
+```
+
+
+## Heart disease
+
+Let's take a look at the heart disease gene sets.
+
+```{r,heartdisease,fig.width=12,fig.height=8}
+hd <- gmt_import("heartdisease.gmt")
+hd <- hd[which(!duplicated(names(hd)))]
+numgenes <- unlist(lapply(hd,length))
+hist(numgenes,breaks = 15, xlab="number of genes per set",main="Heart disease gene sets")
+res <- lapply(hd, function(x) { ora(gs=x,genesets=reactome, universe=universe)  }  )
+res <- res[which(lapply(res,length)>0)]
+myres <- bind_rows(lapply(res, as.data.frame.list))
+myres[is.na(myres)] <- 0
+rownames(myres) <- names(res)
+colfunc <- colorRampPalette(c("white", "blue"))
+heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.7,dendrogram = "none",main="heart disease")
+```
+
+## SARS, MERS and SARS-CoV-2
+
+Let's take a look at these virus infection gene sets.
+
+```{r,sars,fig.width=12,fig.height=8}
+sars <- gmt_import("SARS_MERS.gmt")
+sars <- sars[which(!duplicated(names(sars)))]
+numgenes <- unlist(lapply(sars,length))
+hist(numgenes,breaks = 15, xlab="number of genes per set",main="SARS, MERS and SARS-CoV-2 gene sets")
+res <- lapply(sars, function(x) { ora(gs=x,genesets=reactome, universe=universe)  }  )
+res <- res[which(lapply(res,length)>0)]
+myres <- bind_rows(lapply(res, as.data.frame.list))
+myres[is.na(myres)] <- 0
+rownames(myres) <- names(res)
+colfunc <- colorRampPalette(c("white", "blue"))
+heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.7,dendrogram = "none",main="SARS, MERS and SARS-CoV-2 gene sets")
+```
 
 
 ## Session information
