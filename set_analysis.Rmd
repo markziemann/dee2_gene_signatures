@@ -1,5 +1,5 @@
 ---
-title: "analysing gene sets"
+title: "Characterising newly made gene sets"
 author: "The Gene Signature Commons Group"
 date: "`r Sys.Date()`"
 output:
@@ -14,12 +14,48 @@ In this analysis we will be characterising the new gene sets.
 ## Libraries
 
 ```{r, libs}
-library("getDEE2")
-library("mitch")
-library("triwise")
-library("dplyr")
-library("gplots")
+suppressPackageStartupMessages({
+  library("getDEE2")
+  library("mitch")
+  library("triwise")
+  library("dplyr")
+  library("gplots")
+})
+```
 
+## Reference gene list
+
+This is the background - all genes in the "universe"
+
+```{r,genelist}
+# get universe of gene names and biotypes
+if (! file.exists("hs.gtf.gz") ) {
+  download.file("ftp://ftp.ensembl.org/pub/release-90/gtf/homo_sapiens/Homo_sapiens.GRCh38.90.gtf.gz",destfile= "hs.gtf.gz")
+}
+
+g<-read.table("hs.gtf.gz",sep="\t")
+g <- g[grep("gene",g$V3),9] 
+universe <- sapply(strsplit(g," "),"[[",6)
+universe <- gsub(";","",universe)
+
+biotypes <- sapply(strsplit(g," "),"[[",10)
+biotypes <- gsub("_"," ",biotypes)
+biotypes <- gsub(";","",biotypes)
+
+biotypes_df <- data.frame(universe,biotypes)
+
+universe <- unique(universe)
+
+mytable <- table(biotypes)
+mytable <- mytable[order(mytable)]
+mytable <- mytable[which(mytable>100)]
+
+par(mar=c(3,13,1,1)); barplot(mytable,horiz=TRUE,las=2,cex.names = 0.6,cex.axis = 0.6, 
+  main="number of genes in each biotype class",xlim = c(0,20000)) ;grid()
+
+# Take note how many transcripts are protein coding versus non-protein coding
+paste("protein coding:",length(which(biotypes=="protein coding")))
+paste("non-protein coding:",length(which(biotypes!="protein coding")))
 ```
 
 
@@ -32,18 +68,32 @@ download.file("https://reactome.org/download/current/ReactomePathways.gmt.zip", 
 unzip("ReactomePathways.gmt.zip")
 reactome <- gmt_import("ReactomePathways.gmt")
 str(head(reactome))
-```
-## Reference gene list
 
-This is the background - all genes in the "universe"
 
-```{r,genelist}
-md <- getDEE2Metadata("hsapiens")
-srr <- md[grep("PASS",md$QC_summary)[1],1]
-dat <- getDEE2::getDEE2(species="hsapiens",SRRvec = srr , mmetadata = md,legacy = TRUE)
-universe <- dat$GeneInfo$GeneSymbol
-length(universe)
+reactome_genes <- unique(unname(unlist(reactome)))
+head(reactome_genes)
+head(universe)
+length(intersect(reactome_genes,universe))
+v1 <- list("Reactome"=reactome_genes, "Ensembl universe"=universe)
+library("eulerr")
+plot(euler(v1),quantities = TRUE)
+length(reactome_genes)/length(universe)*100
+
+prot <- biotypes_df[which(biotypes_df$biotypes=="protein coding"),1] 
+prot <- unique(prot)
+nprot <- biotypes_df[which(biotypes_df$biotypes!="protein coding"),1]
+nprot <- unique(nprot)
+v1 <- list("Reactome"=reactome_genes, "protein coding"=prot, "non-protein coding"=nprot)
+plot(euler(v1),quantities = TRUE)
+
 ```
+
+## Defining the overrepresentation analysis function
+
+Here I'm using the triwise::testEnrichment function which uses a Fisher test under the hood.
+
+Reference
+van de Laar L, Saelens W, De Prijck S, Martens L, Scott CL, Van Isterdael G, Hoffmann E, Beyaert R, Saeys Y, Lambrecht BN, Guilliams M. Yolk Sac Macrophages, Fetal Liver, and Adult Monocytes Can Colonize an Empty Niche and Develop into Functional Tissue-Resident Macrophages. Immunity. 2016 Apr 19;44(4):755-68. doi: 10.1016/j.immuni.2016.02.017. Epub 2016 Mar 15. PMID: 26992565.
 
 ```{r,orafunc}
 ora <- function(gs,genesets,universe){ 
@@ -69,13 +119,34 @@ epi <- gmt_import("epilepsy.gmt")
 epi <- epi[which(!duplicated(names(epi)))]
 numgenes <- unlist(lapply(epi,length))
 hist(numgenes,breaks = 15, xlab="number of genes per set",main="Epilepsy gene sets")
+
+# classes
+mytable <- lapply(epi,function(x) {
+  table(biotypes_df[which(x %in% biotypes_df$universe),2])
+})
+mydf <- bind_rows(lapply(mytable, as.data.frame.list))
+#mydf[is.na(mydf)] <- 0
+rownames(mydf) <- names(epi)
+mydf_n <- mydf/rowSums(mydf)
+mydf <- mydf[,head(order(-colSums(mydf_n)),8)]
+colfunc <- colorRampPalette(c("white", "yellow","orange","red","darkred"))(n=25)
+heatmap.2(as.matrix(mydf),col=colfunc,trace="none",margin=c(10,15),cexCol = 0.9, cexRow = 0.7,scale="row",dendrogram = "none",main="Epilepsy gene sets by biotype",na.color = "white")
+
+mydf_n[is.na(mydf_n)] <- 0
+mytable <-colSums(mydf_n)
+mytable <- mytable/sum(mytable)*100
+mytable<-mytable[order(mytable)]
+par(mar=c(3,13,1,1)); barplot(mytable,horiz=TRUE,las=2,cex.names = 0.7,cex.axis = 0.8, 
+  main="Overall biotype class representation (%)" ) ;grid()
+
+# ORA
 res <- lapply(epi, function(x) { ora(gs=x,genesets=reactome, universe=universe)  }  )
 res <- res[which(lapply(res,length)>0)]
 myres <- bind_rows(lapply(res, as.data.frame.list))
 myres[is.na(myres)] <- 0
 rownames(myres) <- names(res)
-colfunc <- colorRampPalette(c("white", "blue"))
-heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.7,dendrogram = "none",main="epilepsy")
+colfunc <- colorRampPalette(c("white", "lightblue","blue", "darkblue"))(n=25)
+heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.7,dendrogram = "none",main="Epilepsy gene sets by Reactome enrichment")
 ```
 
 
@@ -88,13 +159,33 @@ diab <- gmt_import("diabetes.gmt")
 diab <- diab[which(!duplicated(names(diab)))]
 numgenes <- unlist(lapply(diab,length))
 hist(numgenes,breaks = 15, xlab="number of genes per set",main="Diabetes gene sets")
+
+# classes
+mytable <- lapply(diab,function(x) {
+  table(biotypes_df[which(x %in% biotypes_df$universe),2])
+})
+mydf <- bind_rows(lapply(mytable, as.data.frame.list))
+rownames(mydf) <- names(diab)
+mydf_n <- mydf/rowSums(mydf)
+mydf <- mydf[,head(order(-colSums(mydf_n)),8)]
+colfunc <- colorRampPalette(c("white", "yellow","orange","red","darkred"))(n=25)
+heatmap.2(as.matrix(mydf),col=colfunc,trace="none",margin=c(10,15),cexCol = 0.8, cexRow = 0.7,scale="row",dendrogram = "none",main="Diabetes gene sets by biotype",na.color = "white")
+
+mydf_n[is.na(mydf_n)] <- 0
+mytable <-colSums(mydf_n)
+mytable <- mytable/sum(mytable)*100
+mytable<-mytable[order(mytable)]
+par(mar=c(3,13,1,1)); barplot(mytable,horiz=TRUE,las=2,cex.names = 0.7,cex.axis = 0.8, 
+  main="Overall biotype class representation (%)" ) ;grid()
+
+# reactome enrichment
 res <- lapply(diab, function(x) { ora(gs=x,genesets=reactome, universe=universe)  }  )
 res <- res[which(lapply(res,length)>0)]
 myres <- bind_rows(lapply(res, as.data.frame.list))
 myres[is.na(myres)] <- 0
 rownames(myres) <- names(res)
-colfunc <- colorRampPalette(c("white", "blue"))
-heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.7,dendrogram = "none",main="diabetes")
+colfunc <- colorRampPalette(c("white", "lightblue","blue", "darkblue"))(n=25)
+heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.7,dendrogram = "none",main="Diabetes gene sets by Reactome enrichment")
 ```
 
 
@@ -107,31 +198,71 @@ hd <- gmt_import("heartdisease.gmt")
 hd <- hd[which(!duplicated(names(hd)))]
 numgenes <- unlist(lapply(hd,length))
 hist(numgenes,breaks = 15, xlab="number of genes per set",main="Heart disease gene sets")
+
+# classes
+mytable <- lapply(hd,function(x) {
+  table(biotypes_df[which(x %in% biotypes_df$universe),2])
+})
+mydf <- bind_rows(lapply(mytable, as.data.frame.list))
+rownames(mydf) <- names(hd)
+mydf_n <- mydf/rowSums(mydf)
+mydf <- mydf[,head(order(-colSums(mydf_n)),8)]
+colfunc <- colorRampPalette(c("white", "yellow","orange","red","darkred"))(n=25)
+heatmap.2(as.matrix(mydf),col=colfunc,trace="none",margin=c(10,15),cexCol = 0.8, cexRow = 0.7,scale="row",dendrogram = "none",main="Heart disease gene sets by biotype",na.color = "white")
+
+mydf_n[is.na(mydf_n)] <- 0
+mytable <-colSums(mydf_n)
+mytable <- mytable/sum(mytable)*100
+mytable<-mytable[order(mytable)]
+par(mar=c(3,13,1,1)); barplot(mytable,horiz=TRUE,las=2,cex.names = 0.7,cex.axis = 0.8, 
+  main="Overall biotype class representation (%)" ) ;grid()
+
+# reactome enrichment
 res <- lapply(hd, function(x) { ora(gs=x,genesets=reactome, universe=universe)  }  )
 res <- res[which(lapply(res,length)>0)]
 myres <- bind_rows(lapply(res, as.data.frame.list))
 myres[is.na(myres)] <- 0
 rownames(myres) <- names(res)
-colfunc <- colorRampPalette(c("white", "blue"))
-heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.7,dendrogram = "none",main="heart disease")
+colfunc <- colorRampPalette(c("white", "lightblue","blue", "darkblue"))(n=25)
+heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.7,dendrogram = "none",main="Heart disease gene sets by Reactome enrichment")
 ```
 
 ## SARS, MERS and SARS-CoV-2
 
 Let's take a look at these virus infection gene sets.
 
-```{r,sars,fig.width=12,fig.height=8}
+```{r,sars,fig.width=12,fig.height=10}
 sars <- gmt_import("SARS_MERS.gmt")
 sars <- sars[which(!duplicated(names(sars)))]
 numgenes <- unlist(lapply(sars,length))
 hist(numgenes,breaks = 15, xlab="number of genes per set",main="SARS, MERS and SARS-CoV-2 gene sets")
+
+# Biotype classes
+mytable <- lapply(sars,function(x) {
+  table(biotypes_df[which(x %in% biotypes_df$universe),2])
+})
+mydf <- bind_rows(lapply(mytable, as.data.frame.list))
+rownames(mydf) <- names(sars)
+mydf_n <- mydf/rowSums(mydf)
+mydf <- mydf[,head(order(-colSums(mydf_n)),8)]
+colfunc <- colorRampPalette(c("white", "yellow","orange","red","darkred"))(n=25)
+heatmap.2(as.matrix(mydf),col=colfunc,trace="none",margin=c(10,15),cexCol = 0.8, cexRow = 0.7,scale="row",dendrogram = "none",main="SARS, MERS and SARS-CoV2 gene sets by biotype",na.color = "white")
+
+mydf_n[is.na(mydf_n)] <- 0
+mytable <-colSums(mydf_n)
+mytable <- mytable/sum(mytable)*100
+mytable<-mytable[order(mytable)]
+par(mar=c(3,13,1,1)); barplot(mytable,horiz=TRUE,las=2,cex.names = 0.7,cex.axis = 0.8, 
+  main="Overall biotype class representation (%)" ) ;grid()
+
+# Reactome enrichment
 res <- lapply(sars, function(x) { ora(gs=x,genesets=reactome, universe=universe)  }  )
 res <- res[which(lapply(res,length)>0)]
 myres <- bind_rows(lapply(res, as.data.frame.list))
 myres[is.na(myres)] <- 0
 rownames(myres) <- names(res)
-colfunc <- colorRampPalette(c("white", "blue"))
-heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.7,dendrogram = "none",main="SARS, MERS and SARS-CoV-2 gene sets")
+colfunc <- colorRampPalette(c("white", "lightblue","blue", "darkblue"))(n=25)
+heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.7,dendrogram = "none",main="SARS, MERS and SARS-CoV-2 gene sets genes by Reactome enrichment")
 ```
 
 
