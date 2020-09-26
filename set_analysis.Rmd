@@ -59,16 +59,15 @@ paste("non-protein coding:",length(which(biotypes!="protein coding")))
 ```
 
 
-## Reference gene sets
+## Curated gene sets
 
 Here I download the current Reactome gene set library.
 
-```{r,external}
+```{r,reactome}
 download.file("https://reactome.org/download/current/ReactomePathways.gmt.zip", destfile="ReactomePathways.gmt.zip")
 unzip("ReactomePathways.gmt.zip")
 reactome <- gmt_import("ReactomePathways.gmt")
 str(head(reactome))
-
 
 reactome_genes <- unique(unname(unlist(reactome)))
 head(reactome_genes)
@@ -83,10 +82,43 @@ prot <- biotypes_df[which(biotypes_df$biotypes=="protein coding"),1]
 prot <- unique(prot)
 nprot <- biotypes_df[which(biotypes_df$biotypes!="protein coding"),1]
 nprot <- unique(nprot)
+intersect(prot,nprot)
+nprot <-   setdiff(nprot,prot)
 v1 <- list("Reactome"=reactome_genes, "protein coding"=prot, "non-protein coding"=nprot)
 plot(euler(v1),quantities = TRUE)
-
 ```
+Now let's do the same with GO sets downloaded from Ensembl biomart.
+
+```{r,go}
+go <- read.table("biomart_2020-09-26.txt.gz",sep="\t", fill = TRUE)
+colnames(go) <- go[1,]
+go <- go[2:nrow(go),]
+go <- go[which(go$`GO term accession`!=""),]
+go_genes <- unique(go$`Gene name`)
+length(unique(go$`GO term accession`))
+length(go_genes)
+head(go)
+v1 <- list("GO"=go_genes, "protein coding"=prot, "non-protein coding"=nprot)
+plot(euler(v1),quantities = TRUE)
+```
+Human phenotype ontology
+Downloaded from https://hpo.jax.org/app/download/annotation
+
+```{r,hpo}
+hpo <- read.table("phenotype_to_genes.txt",sep="\t")
+head(hpo)
+hpo_genes <- unique(hpo$V4)
+v1 <- list("HPO"=hpo_genes, "protein coding"=prot, "non-protein coding"=nprot)
+plot(euler(v1),quantities = TRUE)
+```
+MSigDB
+```{r,msigdb}
+msigdb <- gmt_import("msigdb.v7.2.symbols.gmt")
+msigdb_genes <- unique(unname(unlist(msigdb)))
+v1 <- list("MSigDB"=msigdb_genes,"protein coding"=prot, "non-protein coding"=nprot)
+plot(euler(v1),quantities = TRUE)
+```
+
 
 ## Defining the overrepresentation analysis function
 
@@ -119,6 +151,21 @@ epi <- gmt_import("epilepsy.gmt")
 epi <- epi[which(!duplicated(names(epi)))]
 numgenes <- unlist(lapply(epi,length))
 hist(numgenes,breaks = 15, xlab="number of genes per set",main="Epilepsy gene sets")
+
+# Similarity matrix TODO
+mydf <- bind_rows(lapply(epi, as.data.frame.list))
+rownames(mydf) <- names(epi)
+mydf[1:5,1:6]
+#mydf[is.na(mydf)] <- 0
+j <- apply(mydf,1,function(x) {
+  apply(mydf,1,function(y) {
+    length(intersect(x,y) ) / length(union(x,y))
+  })
+})
+j[lower.tri(j)] <- NA
+j[lower.tri(j,diag=TRUE)] <- 0
+colfunc <- colorRampPalette(c("white", "yellow","orange","red","darkred"))(n=25)
+heatmap.2(j,col=colfunc,symm = TRUE,trace="none",margin=c(15,15),cexRow = 0.5,cexCol = 0.5,na.color = "white")
 
 # classes
 mytable <- lapply(epi,function(x) {
