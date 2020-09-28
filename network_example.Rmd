@@ -1,0 +1,52 @@
+---
+title: "Network diagram test"
+author: "The Gene Signature Commons Group"
+date: "`r Sys.Date()`"
+output:
+  html_document
+---
+
+```{r,library}
+library(plyr)
+library(network)
+```
+
+
+```{r,data}
+## Read in data obtained from http://www.fao.org/faostat/en/#search/maize
+maize.df = read.csv("FAOSTAT_data_9-28-2020.csv", header = TRUE,
+                    stringsAsFactors = FALSE)
+```
+
+```{r,filter}
+## Present only the top 80% of the value traded to avoid over plotting.
+mdf <- subset(maize.df,Year == 2017)
+mdf <- subset(mdf, Element == "Export Quantity")
+
+mdf <- mdf[order(-mdf$Value),]
+head(mdf)
+mdff <- mdf[which(cumsum(mdf$Value)/sum(mdf$Value)<.8),]
+```
+
+```{r,network}
+## Create the network and set the size of arrow
+mdff$edgeSize = with(mdff, Value/sum(Value))
+
+mdff$arrowSize = ifelse(mdff$edgeSize * 30 < 0.5 , 0.5,
+                                 mdff$edgeSize * 15)
+
+head(mdff[, c(4,6)])
+
+maize.net = network(mdff[, c(4,6)])
+
+maize.net
+```
+
+```{r,plotnet,fig.height=10,fig.width=10}
+## Plot the network
+plot(maize.net, displaylabels = TRUE, label.col = "steelblue",
+     edge.lwd = c(mdff$edgeSize) * 100,
+     arrowhead.cex = c(mdff$arrowSize),
+     label.cex = 1, vertex.border = "white",
+     vertex.col = "skyblue", edge.col = rgb(0, 0, 0, alpha = 0.5))
+```

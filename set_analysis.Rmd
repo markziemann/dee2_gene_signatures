@@ -20,6 +20,8 @@ suppressPackageStartupMessages({
   library("triwise")
   library("dplyr")
   library("gplots")
+  library("reshape2")
+  library("network")
 })
 ```
 
@@ -142,30 +144,54 @@ ora <- function(gs,genesets,universe){
 }
 ```
 
+Here I'm declaring a function that converts list of vectors to a network diagram.
+
+There are 2x edges than nodes.
+
+Only the edges with highest similarity are retained, as per jaccard.
+
+```{r,gsnet}
+gs2net <- function(gset){
+  mydf <- bind_rows(lapply(gset, as.data.frame.list))
+  rownames(mydf) <- names(gset)
+  mydf[1:5,1:6]
+  #mydf[is.na(mydf)] <- 0
+  j <- apply(mydf,1,function(x) {
+    apply(mydf,1,function(y) {
+      length(intersect(x,y) ) / length(union(x,y))
+    })
+  })
+  j[lower.tri(j)] <- NA
+  j[lower.tri(j,diag=TRUE)] <- 0
+  jl <- melt(j)
+  jl <- jl[which(jl$Var1 != jl$Var2),]
+  jl <- jl[which(jl$value != 1),]
+  jl <- jl[order(-jl$value),]
+  jl <- head(jl,length(gset)*2)
+  jl$edgeSize = with(jl, jl$value/sum(jl$value))
+  jlnet = network(jl[,1:2])
+  plot(jlnet, displaylabels = TRUE, label.col = "steelblue",
+       edge.lwd = c(jl$edgeSize) * 100,
+       arrowhead.cex = 0,
+       label.cex = 1, vertex.border = "white",
+       vertex.col = "blue", edge.col = rgb(0, 0, 0, alpha = 0.5))
+}
+```
+
 
 ## Epilepsy
 
 Let's take a look at the epilepsy gene sets.
+
 ```{r,epilepsy,fig.width=10,fig.height=8}
 epi <- gmt_import("epilepsy.gmt")
 epi <- epi[which(!duplicated(names(epi)))]
+setnames <- names(epi)
+names(epi) <-paste("GS",1:length(epi))
 numgenes <- unlist(lapply(epi,length))
 hist(numgenes,breaks = 15, xlab="number of genes per set",main="Epilepsy gene sets")
 
-# Similarity matrix TODO
-mydf <- bind_rows(lapply(epi, as.data.frame.list))
-rownames(mydf) <- names(epi)
-mydf[1:5,1:6]
-#mydf[is.na(mydf)] <- 0
-j <- apply(mydf,1,function(x) {
-  apply(mydf,1,function(y) {
-    length(intersect(x,y) ) / length(union(x,y))
-  })
-})
-j[lower.tri(j)] <- NA
-j[lower.tri(j,diag=TRUE)] <- 0
-colfunc <- colorRampPalette(c("white", "yellow","orange","red","darkred"))(n=25)
-heatmap.2(j,col=colfunc,symm = TRUE,trace="none",margin=c(15,15),cexRow = 0.5,cexCol = 0.5,na.color = "white")
+gs2net(epi)
 
 # classes
 mytable <- lapply(epi,function(x) {
@@ -201,11 +227,15 @@ heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.7
 
 Let's take a look at the diabetes gene sets.
 
-```{r,diabetes,fig.width=12,fig.height=8}
+```{r,diabetes,fig.width=8,fig.height=8}
 diab <- gmt_import("diabetes.gmt")
 diab <- diab[which(!duplicated(names(diab)))]
+setnames <- names(diab)
+names(diab) <-paste("GS",1:length(diab))
 numgenes <- unlist(lapply(diab,length))
 hist(numgenes,breaks = 15, xlab="number of genes per set",main="Diabetes gene sets")
+
+gs2net(diab)
 
 # classes
 mytable <- lapply(diab,function(x) {
@@ -240,11 +270,15 @@ heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.2
 
 Let's take a look at the heart disease gene sets.
 
-```{r,heartdisease,fig.width=12,fig.height=8}
+```{r,heartdisease,fig.width=8,fig.height=8}
 hd <- gmt_import("heartdisease.gmt")
 hd <- hd[which(!duplicated(names(hd)))]
+setnames <- names(hd)
+names(hd) <-paste("GS",1:length(hd))
 numgenes <- unlist(lapply(hd,length))
 hist(numgenes,breaks = 15, xlab="number of genes per set",main="Heart disease gene sets")
+
+gs2net(hd)
 
 # classes
 mytable <- lapply(hd,function(x) {
@@ -278,13 +312,17 @@ heatmap.2(as.matrix(myres),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.5
 
 Let's take a look at these virus infection gene sets.
 
-```{r,sars,fig.width=12,fig.height=10}
+```{r,sars,fig.width=8,fig.height=10}
 sars <- gmt_import("SARS_MERS.gmt")
 sars <- sars[which(!duplicated(names(sars)))]
+setnames <- names(sars)
+names(sars) <-paste("GS",1:length(sars))
 numgenes <- unlist(lapply(sars,length))
 hist(numgenes,breaks = 15, xlab="number of genes per set",main="SARS, MERS and SARS-CoV-2 gene sets")
 
-# Biotype classes
+gs2net(sars)
+
+# classes
 mytable <- lapply(sars,function(x) {
   table(biotypes_df[which(x %in% biotypes_df$universe),2])
 })
