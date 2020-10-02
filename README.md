@@ -17,25 +17,12 @@ These gene sets are available from the [DEE2 website](http://dee2.io/genesets.ht
 
 ## How were the gene signatures were created?
 
-We used a keyword search at [NCBI GEO](https://www.ncbi.nlm.nih.gov/gds/) and then intersected this list of GEO series with studies included in [DEE2](http://dee2.io/huge/).
-This process was performed using the [searchDEE2.Rmd script](https://github.com/markziemann/dee2_gene_signatures/blob/master/searchDEE2.Rmd).
-
-Next, we used a number of criteria to determine the suitability of the data for inclusion.
-
-1. The study is relevant to the disease.
-
-2. The study involves samples that can be compared, for example control and disease groups.
-
-4. The data is available at DEE2 and passes QC filtering. QC "FAIL" data sets are excluded.
-
-3. The experiment is replicated, that means n>2 for each condition after QC filtering.
-
-If the study contrasts pass these conditions then it can be included.
-For each disease theme, a new markdown file was created and contains the four sections
-
+Methods used to generate the gene sets are given [here](doc/methods.md).
 
 ## How can I contribute
 
+Contributions are welcome!
+Follow the [documentation](doc/contribute.md) and get involved.
 Create an issue on an existing theme or create a new theme.
 Each 
 
