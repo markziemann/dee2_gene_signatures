@@ -64,10 +64,9 @@ Gene Ontology annotations were downloaded from Ensembl Biomart (Sept 2020)[6].
 Gene sets were also obtained from MSigDB (version 7.2)[7].
 Venn diagrams were generated using the eulerr package v6.1.0.
 Network diagrams were generated using the network package v1.16.0.
-Overrepresentation test using the Fisher test method was performed using the testEnrichment function of the triwise package version 0.99.5.
+Overrepresentation test (Fisher method) were performed using the testEnrichment function of the triwise package version 0.99.5.
 False discovery rate adjusted p-values (FDR) < 0.05 were considered significant.
 For each new gene set, up to five enriched Reactome gene sets with FDR < 0.05 were included in a heatmap using heatmap.2 functon of gplots v3.3.2.
-
 
 ## References
 
