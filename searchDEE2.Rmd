@@ -11,7 +11,7 @@ In this script we're obtaining the current list of human RNA-seq studies from de
 
 ```{r cars}
 library("getDEE2")
-md <- getDee2Metadata("hsapiens")
+md <- getDEE2::getDEE2Metadata("hsapiens")
 head(md)
 dim(md)
 length(unique(md$GEO_series))

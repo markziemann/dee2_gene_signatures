@@ -456,7 +456,7 @@ myres <- bind_rows(lapply(res, as.data.frame.list))
 myres[is.na(myres)] <- 0
 rownames(myres) <- names(res)
 colfunc <- colorRampPalette(c("white", "lightblue","blue", "darkblue"))(n=25)
-heatmap.2(t(as.matrix(myres)),col=colfunc,trace="none",margin=c(10,15),cexRow = 0.3, cexCol = 0.4,dendrogram = "none",main="SARS, MERS and SARS-CoV-2 gene sets genes by Reactome enrichment")
+heatmap.2(t(as.matrix(myres)),col=colfunc,trace="none",margin=c(5,10),cexRow = 0.3, cexCol = 0.4,dendrogram = "none",main="SARS, MERS and SARS-CoV-2 gene sets genes by Reactome enrichment")
 ```
 
 ## Overall analysis
