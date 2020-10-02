@@ -1,3 +1,23 @@
+## Candidate studies 
+
+"GSE136053" "GSE137136" "GSE137317" "GSE137803" "GSE51310"  "GSE52314" 
+"GSE139073" "GSE51924"  "GSE139535" "GSE139929" "GSE139949" "GSE140064"
+"GSE140627" "GSE141126" "GSE141309" "GSE141639" "GSE142025" "GSE143143"
+ "GSE53949"  "GSE55567"  "GSE57896"  "GSE60424"  "GSE63887"  "GSE67141" 
+ "GSE67543"  "GSE58557"  "GSE69889"  "GSE29660"  "GSE76268"  "GSE76308" 
+ "GSE77108"  "GSE77522"  "GSE78922"  "GSE79668"  "GSE81076"  "GSE32874" 
+ "GSE81608"  "GSE81547"  "GSE81965"  "GSE83139"  "GSE83699"  "GSE83781" 
+ "GSE84133"  "GSE84714"  "GSE84814"  "GSE85241"  "GSE35296"  "GSE85527" 
+ "GSE85530"  "GSE85531"  "GSE86611"  "GSE86884"  "GSE87340"  "GSE87626" 
+ "GSE89360"  "GSE89475"  "GSE90028"  "GSE38447"  "GSE92724"  "GSE92772" 
+ "GSE93709"  "GSE94019"  "GSE95243"  "GSE96562"  "GSE96563"  "GSE96564" 
+ "GSE96568"  "GSE97084"  "GSE97205"  "GSE97591"  "GSE97647"  "GSE97655" 
+ "GSE98485"  "GSE98675"  "GSE99068"  "GSE101207" "GSE102371" "GSE102498"
+ "GSE102633" "GSE102677" "GSE104297" "GSE105052" "GSE106148" "GSE106177"
+ "GSE106520" "GSE108413" "GSE109140" "GSE109265" "GSE110935" "GSE111876"
+ "GSE114051" "GSE116369" "GSE116559" "GSE117469" "GSE44639"  "GSE120299"
+ "GSE120904" "GSE50386"
+
 ## Studies that fit criteria
 
 GSE137136: control vs cytokine
@@ -78,7 +98,6 @@ GSE94019: non-diabetic retinal endothelial cells versus proliferative diabetic r
 
 GSE96563: Bulk-cell RNA-SEQ of unstimulated, anti-CD3 anti-CD28 stimulated and tetramer stimulated T cell clones
 
-
 ## Studies that don't fit criteria
 
 GSE137803: no replicates
@@ -155,24 +174,7 @@ GSE96564: single-cell RNA-seq of CD8+ influenza-reactive T cells
 
 GSE96568: single-cell RNA-seq not included
 
-
-## Studies tbd
-
-### Aaron's
-
-### Haris'
-
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
-
-### Chelsia's
-
-
-
-## Contrast
-
+## Contrasts
 
 SRP221142:Genes differentially regulated by pro-inflammatory cytokines:Ctrl; SRX6821381,SRX6821383,SRX6821385,SRX6821387,SRX6821389:PIC; SRX6821382,SRX6821384,SRX6821386,SRX6821388,SRX6821390
 
