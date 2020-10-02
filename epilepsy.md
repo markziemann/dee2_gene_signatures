@@ -1,3 +1,6 @@
+## Canditate studies
+"GSE137663" "GSE62731"  "GSE67835"  "GSE70935"  "GSE71058"  "GSE72202"  "GSE89843"  "GSE99937"  "GSE100242" "GSE100670" "GSE111458" "GSE99074" 
+
 ## Studies that fit the criteria
 
 GSE137663: treatment vs control
@@ -26,10 +29,6 @@ GSE111458: no replicates
 GSE99074: no clear descriptions
 
 GSE89843: not relevant to epilepsy
-
-
-## Canditate studies
-"GSE137663" "GSE62731"  "GSE67835"  "GSE70935"  "GSE71058"  "GSE72202"  "GSE89843"  "GSE99937"  "GSE100242" "GSE100670" "GSE111458" "GSE99074" 
 
 ## Contrasts
 SRP222346: mock treatment versus dCas9 transduced SH-SY5Y cells:mock; SRX6867493, SRX6867494: dCas9; SRX6867495 , SRX6867496 , SRX6867497;
