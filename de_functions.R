@@ -16,13 +16,12 @@ suppressPackageStartupMessages({
 # let's assume species is human for now
 SPECIES = "hsapiens"
 
-main<-function(x1) {
+main<-function(x1,mdat) {
   
   message(x1)
   
   # define the SRP
   SRP = strsplit(x1,":")[[1]][1]
-  
   
   # define contrast name
   contrast_name = strsplit(x1,":")[[1]][2]
@@ -71,11 +70,6 @@ main<-function(x1) {
   rownames(mm) <- ss[,1]
   mm
   
-  # get the data from the database
-  if (exists("mdat") == FALSE) {
-    mdat <- getDEE2::getDEE2Metadata(species = SPECIES)
-  }
-  
   # filter for samples in this study
   mdat1 <- mdat[which(mdat$SRP_accession==SRP),]
   
@@ -86,7 +80,7 @@ main<-function(x1) {
   mdat1
   
   # fetch the data
-  y <- getDEE2(SRRvec = mdat1$SRR_accession, species = SPECIES, metadata = mdat,legacy = TRUE)
+  y <- getDEE2(SRRvec = mdat1$SRR_accession, species = SPECIES, metadata = mdat, legacy = TRUE)
   
   # look at the data structure
   str(y)
@@ -155,10 +149,6 @@ main<-function(x1) {
   dds <- DESeq(dds)
   de <- results(dds)
   
-  #library(topconfects)
-  #confects <- deseq2_confects(dds)
-  #str(confects)
-  
   # RPM
   yyy <- yy/colMeans(yy) * 1000000
   res <- cbind(de,yyy,yy)
@@ -195,7 +185,26 @@ main<-function(x1) {
               margins = c(6,6), cexRow=.4, cexCol = 0.6, main=SRP,
               ColSideColors = colCols )
   
-  # curate the gene sets
+  # curate the gene sets (ensembl accessions)
+  if(length(up)>9) {
+    upg <- unique(sapply(strsplit(up," "),"[[",1)) 
+    setid = paste(SRP, contrast_name," upregulated",sep=":")
+    setname = paste("GeneSetCommons",SRP,as.integer(as.numeric(Sys.time())),sep=" ")
+    upes <- list("id"=setid,"name"=setname,"genes"=upg)
+  } else {
+    upes=NULL
+  }
+  
+  if(length(dn)>9) {
+    dng <- unique(sapply(strsplit(dn," "),"[[",1)) 
+    setid = paste(SRP, contrast_name," downregulated",sep=":")
+    setname = paste("GeneSetCommons",SRP,as.integer(as.numeric(Sys.time())),sep=" ")
+    dnes <- list("id"=setid,"name"=setname,"genes"=dng)
+  } else {
+    dnes=NULL
+  }
+  
+  # curate the gene sets (gene symbols)
   if(length(up)>9) {
     upg <- unique(sapply(strsplit(up," "),"[[",2)) 
     setid = paste(SRP, contrast_name," upregulated",sep=":")
@@ -214,12 +223,8 @@ main<-function(x1) {
     dngs=NULL
   }
   
-  mysets <- list(upgs,dngs)
-  class(mysets) <- "GMT"
-  filename = paste("GeneSetCommons",SRP,as.integer(as.numeric(Sys.time())),"gmt",sep=".")
-  if(!dir.exists("gmt")){ dir.create("gmt")}
-  write.GMT(mysets,paste("gmt/",filename))
+  list("counts"=yy,"samplesheet"=ss,"design"=mm,
+       "de"=de,
+       "ens_up"=upes, "ens_dn"=dnes,
+       "gs_up"=upgs, "gs_dn"=dngs)  
 }
-mysession <- sessionInfo()
-
-
