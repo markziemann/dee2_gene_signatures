@@ -13,7 +13,7 @@ This analysis is an example of how gene signatures can be generated from publicl
 In this example, we will obtain data from the [DEE2](http://dee2.io) database, perform differential analysis with DESeq2 and then return the gene signature. 
 
 ```{r,setup}
-source("de_functions.R")
+source("../de_functions.R")
 ```
 
 
@@ -22,7 +22,7 @@ source("de_functions.R")
 SPECIES = "hsapiens"
 
 # read in the file
-x <- readLines("heartdisease.md")
+x <- readLines("../contrasts/heartdisease.md")
 
 # this is the best way to get studies with contrasts set up
 x <- x[grep("RP",x)]
@@ -30,25 +30,34 @@ x <- x[grep("RP",x)]
 # how many contrasts to do?
 length(x)
 
-# prepare by deleting the directory called "gmt"
-unlink("gmt", recursive = TRUE)
-
 # get the metadata now to save time
 mdat <- getDEE2::getDEE2Metadata(species = SPECIES)
 
 # lets prototype this main(x[[2]])
 
 # now go ahead and run the whole thing
-data <- sapply(x,main)
+data <- lapply(x,function(x) { main(x,mdat) })
 
-# rename the folder
-unlink("gmt_heartdisease", recursive = TRUE)
-file.rename("gmt","gmt_heartdisease")
+lapply(data,length)
 
-# some things are better done with bash :)
-system("cat gmt_heartdisease/*gmt > heartdisease.gmt")
+data <- data[which(lapply(data,length)>1)]
+data <- data[which(lapply(data,function(x) length(x[[5]] ))>0)]
+saveRDS(data,"heartdisease_data.rds")
 
-unlink("gmt_heartdisease", recursive = TRUE)
+gs1 <- lapply(data, function(x) { x[5] })
+gs2 <- lapply(data, function(x) { x[6] })
+gs <- c(gs1,gs2)
+gs <- lapply(gs,function(x) x[[1]] )
+attributes(gs)$class <- "GMT"
+write.GMT(gs,"heartdisease_ensemblIDs.gmt")
+
+gs1 <- lapply(data, function(x) { x[7] })
+gs2 <- lapply(data, function(x) { x[8] })
+gs <- c(gs1,gs2)
+gs <- lapply(gs,function(x) x[[1]] )
+gs <- lapply(gs,function(x) { x[[3]] <- unique(x[[3]] ) ; return(x) } )
+attributes(gs)$class <- "GMT"
+write.GMT(gs,"heartdisease_genesymbols.gmt")
 
 ```
 
