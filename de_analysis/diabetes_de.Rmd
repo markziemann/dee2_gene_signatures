@@ -48,6 +48,7 @@ gs1 <- lapply(data, function(x) { x[5] })
 gs2 <- lapply(data, function(x) { x[6] })
 gs <- c(gs1,gs2)
 gs <- lapply(gs,function(x) x[[1]] )
+gs <- gs[which(lapply(gs,length)==3)]
 attributes(gs)$class <- "GMT"
 write.GMT(gs,"diabetes_ensemblIDs.gmt")
 
@@ -56,8 +57,10 @@ gs2 <- lapply(data, function(x) { x[8] })
 gs <- c(gs1,gs2)
 gs <- lapply(gs,function(x) x[[1]] )
 gs <- lapply(gs,function(x) { x[[3]] <- unique(x[[3]] ) ; return(x) } )
+gs <- gs[which(lapply(gs,length)==3)]
 attributes(gs)$class <- "GMT"
 write.GMT(gs,"diabetes_genesymbols.gmt")
+
 
 ```
 

@@ -39,10 +39,10 @@ SRP222346: dCas9 transduced versus dCas9 with VP64 co-expression in SH-SY5Y cell
 
 SRP222346: dCas9 transduced versus dCas9 with TET1+VP64 co-expression in SH-SY5Y cells:dCas9; SRX6867495 , SRX6867496 , SRX6867497:TET1+VP64; SRX6867503, SRX6867504, SRX6867505;
 
-SRP061192: non-silencing control in neural progenitor cell lines 553.C2 versus CYFIP1 knockdown:non-silencing control; SRX1097862, SRX1097863, SRX1097864:CYFIP1 knockdown; SRX1097865,SRX1097866,	SRX1097867;
+SRP061192: non-silencing control in neural progenitor cell lines 553.C2 versus CYFIP1 knockdown:non-silencing control; SRX1097862, SRX1097863, SRX1097864:CYFIP1 knockdown; SRX1097865,SRX1097866, SRX1097867;
 
 SRP061192: non-silencing control in neural progenitor cell lines 690.C5 versus CYFIP1 knockdown:non-silencing control; SRX1097868, SRX1097869, SRX1097870:CYFIP1 knockdown; SRX1097871,SRX1097872,SRX1097873;
 
 SRP061192: non-silencing control in neural progenitor cell lines iPS5.C4 versus CYFIP1 knockdown:non-silencing control; SRX1097874, SRX1097875, SRX1097876:CYFIP1 knockdown; SRX1097877,SRX1097878,SRX1097879;
 
-SRP061286: dentate granule cells from patients with mesial tempora lobe epilepsy with hippocampal sclerosis versus dentate granule cells from patients with mesial tempora lobe epilepsy without hippocampal sclerosis:with hippocampal sclerosis; SRX1100259, SRX1100260, SRX1100261, SRX1100262,	SRX1100265,	SRX1100266,	SRX1100269, SRX1100272 :without hippocampal sclerosis; SRX1100273, SRX1100274, SRX1100275, SRX1100276, SRX1100277,	SRX1100278, SRX1100279,	SRX1100280, SRX1100267,	SRX1100268,	SRX1100270, SRX1100271, SRX1100263, SRX1100264; sex
+SRP061286: dentate granule cells from patients with mesial tempora lobe epilepsy with hippocampal sclerosis versus dentate granule cells from patients with mesial tempora lobe epilepsy without hippocampal sclerosis:with hippocampal sclerosis; SRX1100259, SRX1100260, SRX1100261, SRX1100262, SRX1100265, SRX1100266, SRX1100269, SRX1100272 :without hippocampal sclerosis; SRX1100273, SRX1100274, SRX1100275, SRX1100276, SRX1100277, SRX1100278, SRX1100279, SRX1100280, SRX1100267, SRX1100268, SRX1100270, SRX1100271, SRX1100263, SRX1100264; sex

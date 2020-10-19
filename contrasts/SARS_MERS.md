@@ -16,17 +16,17 @@ GSE148729: Different human cell lines were infected with SARS-CoV-1 and SARS-CoV
 
 ## Contrasts
 
-SRP253951: NHBE mock treatment versus infected with SARS-CoV-2 (Series 1): mock;SRX7990866,SRX7990867,SRX7990868: SARS-CoV-2;	SRX7990869,SRX7990870,SRX7990871;
+SRP253951: NHBE mock treatment versus infected with SARS-CoV-2 (Series 1): mock;SRX7990866,SRX7990867,SRX7990868: SARS-CoV-2; SRX7990869,SRX7990870,SRX7990871;
 
-SRP253951: A549 mock treatment versus infected with SARS-CoV-2 (Series 2): mock;SRX7990872,SRX7990873,SRX7990874: SARS-CoV-2;	SRX7990875,SRX7990876,SRX7990877;
+SRP253951: A549 mock treatment versus infected with SARS-CoV-2 (Series 2): mock;SRX7990872,SRX7990873,SRX7990874: SARS-CoV-2; SRX7990875,SRX7990876,SRX7990877;
 
 SRP253951: A549 mock treatment versus infected with Respiratory syncytial virus (Series 3): mock;SRX7990878,SRX7990879: RSV;SRX7990880,SRX7990881;
 
 SRP253951: A549 mock treatment versus infected with Influenza A virus (Series 4): mock;SRX7990882,SRX7990883: IAV;SRX7990884,SRX7990885;
 
-SRP253951: A549 mock treatment versus infected with SARS-CoV-2 (Series 5): mock;	SRX8089264,SRX8089265,SRX8089266: SARS-COV-2;SRX8089267,SRX8089268,	SRX8089269;
+SRP253951: A549 mock treatment versus infected with SARS-CoV-2 (Series 5): mock; SRX8089264,SRX8089265,SRX8089266: SARS-COV-2;SRX8089267,SRX8089268, SRX8089269;
 
-SRP253951: A549 induced with ACE2 mock treatment versus infected with SARS-CoV-2 (Series 6): mock;SRX8089270,SRX8089271,	SRX8089272: SARS-CoV-2;SRX8089273,SRX8089274,SRX8089275;
+SRP253951: A549 induced with ACE2 mock treatment versus infected with SARS-CoV-2 (Series 6): mock;SRX8089270,SRX8089271, SRX8089272: SARS-CoV-2;SRX8089273,SRX8089274,SRX8089275;
 
 SRP253951: Calu3 mock treatment versus infected with SARS-CoV-2 (Series 7): mock;SRX8089276,SRX8089277,SRX8089278: SARS-CoV-2;SRX8089279,SRX8089280,SRX8089281;
 
@@ -46,7 +46,7 @@ SRP253951: NHBE mock treatment versus interferon beta (IFNB) treatment (Series 9
 
 SRP253279: high binding to the RBD of the S protein versus low binding to the RBD of the S protein (fragments A and B): high binding RBD;SRX7950378,SRX7950380: low binding RBD;SRX7950382,SRX7950384; 
 
-SRP253279: high binding to the RBD of the S protein versus low binding to the RBD of the S protein (fragments C, D and E):high binding RBD;SRX7950379,SRX7950381: low binding RBD;	SRX7950383,SRX7950385;
+SRP253279: high binding to the RBD of the S protein versus low binding to the RBD of the S protein (fragments C, D and E):high binding RBD;SRX7950379,SRX7950381: low binding RBD; SRX7950383,SRX7950385;
 
 SRP256479: H1299 cells mock treatment versus infected with SARS-CoV-1 36 hours post infection: mock;SRX8119839,SRX8119840: SARS-CoV-1;SRX8119847,SRX8119848;
 
@@ -84,13 +84,13 @@ SRP256479: Series 1 Calu3 cells mock treatment versus untreated (4 hours): mock;
 
 SRP256479: Series 1 Calu3 cells mock treatment versus infected with SARS-CoV-1 4 hours post infection: mock;SRX8119735,SRX8119736: SARS-CoV-1;SRX8119739,SRX8119740;
 
-SRP256479: Series 1 Calu3 cells mock treatment versus infected with SARS-CoV-1 24 hours post infection: mock;SRX8119737,	SRX8119738: SARS-CoV-1;SRX8119743,SRX8119744;
+SRP256479: Series 1 Calu3 cells mock treatment versus infected with SARS-CoV-1 24 hours post infection: mock;SRX8119737, SRX8119738: SARS-CoV-1;SRX8119743,SRX8119744;
 
 SRP256479: Series 1 Calu3 cells mock treatment (4 and 24 hrs) versus infected with SARS-CoV-1 12 hours post infection: mock;SRX8119735,SRX8119736,SRX8119737,SRX8119738: SARS-CoV-1;SRX8119741,SRX8119742;
 
 SRP256479: Series 1 Calu3 cells mock treatment versus infected with SARS-CoV-2 4 hours post infection: mock;SRX8119735,SRX8119736: SARS-CoV-2;SRX8119745,SRX8119746;
 
-SRP256479: Series 1 Calu3 cells mock treatment versus infected with SARS-CoV-2 24 hours post infection: mock;SRX8119737,	SRX8119738: SARS-CoV-2;SRX8119749,SRX8119750;
+SRP256479: Series 1 Calu3 cells mock treatment versus infected with SARS-CoV-2 24 hours post infection: mock;SRX8119737, SRX8119738: SARS-CoV-2;SRX8119749,SRX8119750;
 
 SRP256479: Series 1 Calu3 cells mock treatment (4 and 24 hrs) versus infected with SARS-CoV-2 12 hours post infection: mock;SRX8119735,SRX8119736,SRX8119737,SRX8119738: SARS-CoV-2;SRX8119747,SRX8119748;
 
@@ -114,11 +114,11 @@ SRP256479: Calu3 cells mock treatment versus infected with SARS-CoV-2 24 hours p
 
 SRP256479: Calu3 cells mock treatment versus infected with SARS-CoV-2 4 hours post infection (smallRNA): mock;SRX8119773,SRX8119774: SARS-CoV-2;SRX8119785,SRX8119786;
 
-SRP256479: Calu3 cells mock treatment versus infected with SARS-CoV-1 24 hours post infection (totalRNA): mock;	SRX8119789,	SRX8119790: SARS-CoV-1;SRX8119795,SRX8119796;
+SRP256479: Calu3 cells mock treatment versus infected with SARS-CoV-1 24 hours post infection (totalRNA): mock; SRX8119789, SRX8119790: SARS-CoV-1;SRX8119795,SRX8119796;
 
 SRP256479: Calu3 cells mock treatment versus infected with SARS-CoV-1 4 hours post infection (totalRNA): mock;SRX8119791,SRX8119792: SARS-CoV-1;SRX8119797,SRX8119798;
 
-SRP256479: Calu3 cells mock treatment versus infected with SARS-CoV-2 24 hours post infection (totalRNA): mock;	SRX8119789,	SRX8119790: SARS-CoV-2;SRX8119801,SRX8119802;
+SRP256479: Calu3 cells mock treatment versus infected with SARS-CoV-2 24 hours post infection (totalRNA): mock; SRX8119789, SRX8119790: SARS-CoV-2;SRX8119801,SRX8119802;
 
 SRP256479: Calu3 cells mock treatment versus infected with SARS-CoV-2 4 hours post infection (totalRNA): mock;SRX8119791,SRX8119792: SARS-CoV-2;SRX8119803,SRX8119804;
 
