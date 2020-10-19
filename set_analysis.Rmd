@@ -1,11 +1,12 @@
 ---
 title: "Characterising newly made gene sets"
-author: "The Gene Signature Commons Group"
+author: "The DEE2 Gene Signatures Group"
 date: "`r Sys.Date()`"
 output:
   html_document
 ---
-Source: https://github.com/markziemann/gene_sig_commons
+
+Source: https://github.com/markziemann/dee2_gene_signatures
 
 ## Background
 
@@ -14,6 +15,7 @@ In this analysis we will be characterising the new gene sets.
 ## Libraries
 
 ```{r, libs}
+
 suppressPackageStartupMessages({
   library("getDEE2")
   library("mitch")
@@ -22,7 +24,9 @@ suppressPackageStartupMessages({
   library("gplots")
   library("reshape2")
   library("network")
+  library("eulerr")
 })
+
 ```
 
 ## Reference gene list
@@ -31,6 +35,7 @@ This is the background - all genes in the "universe" according to Ensembl versio
 You can see that there are a large number of non-protein coding genes.
 
 ```{r,genelist}
+
 # get universe of gene names and biotypes
 if (! file.exists("hs.gtf.gz") ) {
   download.file("ftp://ftp.ensembl.org/pub/release-90/gtf/homo_sapiens/Homo_sapiens.GRCh38.90.gtf.gz",destfile= "hs.gtf.gz")
@@ -64,8 +69,8 @@ par(mar=c(3,13,1,1)); barplot(mytable,horiz=TRUE,las=2,cex.names = 0.6,cex.axis 
 # Take note how many transcripts are protein coding versus non-protein coding
 paste("protein coding:",length(which(biotypes=="protein coding")))
 paste("non-protein coding:",length(which(biotypes!="protein coding")))
-```
 
+```
 
 ## Curated gene sets
 
@@ -77,8 +82,10 @@ Breaking it down into protein coding and non-protein coding, we can see that non
 Reactome has 2400 sets and a total of 11193 genes as of 29/Sep/2020.
 
 ```{r,reactome}
+
+#o
 download.file("https://reactome.org/download/current/ReactomePathways.gmt.zip", destfile="ReactomePathways.gmt.zip")
-unzip("ReactomePathways.gmt.zip")
+#unzip("ReactomePathways.gmt.zip")
 reactome <- gmt_import("ReactomePathways.gmt")
 reactome_genes <- unique(unname(unlist(reactome)))
 length(reactome)
@@ -96,6 +103,7 @@ intersect(prot,nprot)
 nprot <-   setdiff(nprot,prot)
 v1 <- list("Reactome"=reactome_genes, "protein coding"=prot, "non-protein coding"=nprot)
 plot(euler(v1),quantities = TRUE)
+
 ```
 
 ### Gene Ontology
@@ -104,6 +112,7 @@ Now let's do the same with GO sets downloaded from Ensembl biomart.
 GO has 12264 sets and 8412 genes as of 26/Sep/2020.
 
 ```{r,go}
+
 go <- read.table("biomart_2020-09-26.txt.gz",sep="\t", fill = TRUE)
 colnames(go) <- go[1,]
 go <- go[2:nrow(go),]
@@ -115,6 +124,7 @@ v1 <- list("GO"=go_genes, "protein coding"=prot, "non-protein coding"=nprot)
 plot(euler(v1),quantities = TRUE)
 length(unique(go$`GO term accession`))
 head(go)
+
 ```
 
 ### Human Phenotype Ontology
@@ -124,6 +134,7 @@ Downloaded from https://hpo.jax.org/app/download/annotation.
 There are 2958 sets and 4366 genes as of 27/Sep/2020.
 
 ```{r,hpo}
+
 hpo <- read.table("phenotype_to_genes.txt",sep="\t")
 hpo_genes <- unique(hpo$V4)
 head(hpo)
@@ -131,6 +142,7 @@ length(unique(hpo$V1))
 length(hpo_genes)
 v1 <- list("HPO"=hpo_genes, "protein coding"=prot, "non-protein coding"=nprot)
 plot(euler(v1),quantities = TRUE)
+
 ```
 
 ### MSigDB
@@ -145,6 +157,7 @@ length(msigdb)
 length(msigdb_genes)
 v1 <- list("MSigDB"=msigdb_genes,"protein coding"=prot, "non-protein coding"=nprot)
 plot(euler(v1),quantities = TRUE)
+
 ```
 
 ## Defining the overrepresentation analysis function
@@ -155,6 +168,7 @@ Reference
 van de Laar L, Saelens W, De Prijck S, Martens L, Scott CL, Van Isterdael G, Hoffmann E, Beyaert R, Saeys Y, Lambrecht BN, Guilliams M. Yolk Sac Macrophages, Fetal Liver, and Adult Monocytes Can Colonize an Empty Niche and Develop into Functional Tissue-Resident Macrophages. Immunity. 2016 Apr 19;44(4):755-68. doi: 10.1016/j.immuni.2016.02.017. Epub 2016 Mar 15. PMID: 26992565.
 
 ```{r,orafunc}
+
 ora <- function(gs,genesets,universe){ 
   res <- triwise::testEnrichment(gs, genesets, universe, minknown = 3, mindiffexp = 2, maxknown = 5000)
   if( nrow(res)>0 ) {
@@ -167,6 +181,7 @@ ora <- function(gs,genesets,universe){
     return(0)
   }
 }
+
 ```
 
 Here is a function that converts list of vectors to a network diagram.
@@ -175,6 +190,7 @@ Only the edges with highest similarity are retained, as per jaccard.
 The size of the gene set is proportional to the node size (sqrt).
 
 ```{r,gsnet}
+
 gs2net <- function(gset){
   mydf <- bind_rows(lapply(gset, as.data.frame.list))
   rownames(mydf) <- names(gset)
@@ -201,6 +217,7 @@ gs2net <- function(gset){
        label.cex = 1, vertex.border = "white",vertex.cex = jl$vertexsize,
        vertex.col = "blue", edge.col = rgb(0, 0, 0, alpha = 0.5))
 }
+
 ```
 
 
@@ -211,13 +228,16 @@ There are only 12 sets.
 We begin with a histogram of the set size.
 
 ```{r,epilepsy1}
-epi <- gmt_import("epilepsy.gmt")
+
+epi <- gmt_import("epilepsy_genesymbols.gmt")
+epi <- diab[which(!names(epi)=='')]
 epi <- epi[which(!duplicated(names(epi)))]
 length(epi)
 setnames <- names(epi)
 names(epi) <-paste("GS",1:length(epi))
 numgenes <- unlist(lapply(epi,length))
 hist(numgenes,breaks = 15, xlab="number of genes per set",main="Epilepsy gene sets")
+
 ```
 
 Next we can look at the similarity between the gene sets with a network diagram.
@@ -227,6 +247,7 @@ Next we can see that the gene sets have diverse representation of biotypes.
 There is a high proportion of protein coding genes but also lincRNA.
 
 ```{r,epilepsy2,fig.width=8,fig.height=6}
+
 gs2net(epi)
 
 # classes
@@ -238,7 +259,9 @@ rownames(mydf) <- names(epi)
 mydf_n <- mydf/rowSums(mydf)
 mydf <- mydf[,head(order(-colSums(mydf_n)),8)]
 colfunc <- colorRampPalette(c("white", "yellow","orange","red","darkred"))(n=25)
-heatmap.2(t(as.matrix(mydf)),col=colfunc,trace="none",margin=c(5,10),cexCol = 0.9, cexRow = 0.9,scale="col",dendrogram = "none",main="Epilepsy gene sets by biotype",na.color = "white")
+heatmap.2(t(as.matrix(mydf)),col=colfunc,trace="none",margin=c(5,10),cexCol = 0.9, cexRow = 0.9,
+  scale="col",dendrogram = "none",main="Epilepsy gene sets by biotype",na.color = "white")
+
 ```
 
 The overall biotype has a high representaiton of protein coding genes similar to Reactome.
@@ -246,12 +269,14 @@ We also observed a higher representation of lincRNAs in these gene sets.
 Pseudogenes were underrepresented.
 
 ```{r,epilepsy3}
+
 mydf_n[is.na(mydf_n)] <- 0
 mytable <-colSums(mydf_n)
 mytable <- mytable/sum(mytable)*100
 mytable<-mytable[order(mytable)]
 par(mar=c(3,13,1,1)); barplot(mytable,horiz=TRUE,las=2,cex.names = 0.7,cex.axis = 0.8, 
   main="Overall biotype class representation (%)" ) ;grid()
+
 ```
 
 Next we wanted to know the Reactome functional categories that are enriched in each of the gene sets.
@@ -260,6 +285,7 @@ We are aware that it may the improper background and the best background would b
 As expected, some of these sets are related to neurological functions.
 
 ```{r,epilepsy4,fig.width=10,fig.height=8}
+
 # ORA
 res <- lapply(epi, function(x) { ora(gs=x,genesets=reactome, universe=universe)  }  )
 res <- res[which(lapply(res,length)>0)]
@@ -267,7 +293,9 @@ myres <- bind_rows(lapply(res, as.data.frame.list))
 myres[is.na(myres)] <- 0
 rownames(myres) <- names(res)
 colfunc <- colorRampPalette(c("white", "lightblue","blue", "darkblue"))(n=25)
-heatmap.2(t(as.matrix(myres)),col=colfunc,trace="none",margin=c(10,25),cexRow = 0.6,dendrogram = "none",main="Epilepsy gene sets by Reactome enrichment")
+heatmap.2(t(as.matrix(myres)),col=colfunc,trace="none",margin=c(10,25),cexRow = 0.6,
+  dendrogram = "none",main="Epilepsy gene sets by Reactome enrichment")
+
 ```
 
 
@@ -277,13 +305,16 @@ Now lets analyse the new diabetes gene sets.
 There are 129 gene sets.
 
 ```{r,diabetes1}
-diab <- gmt_import("diabetes.gmt")
+
+diab <- gmt_import("diabetes_genesymbols.gmt")
+diab <- diab[which(!names(diab)=='')]
 diab <- diab[which(!duplicated(names(diab)))]
 length(diab)
 setnames <- names(diab)
 names(diab) <-paste("GS",1:length(diab))
 numgenes <- unlist(lapply(diab,length))
 hist(numgenes,breaks = 15, xlab="number of genes per set",main="Diabetes gene sets")
+
 ```
 
 The network diagram indicates clustering into a few groups. 
@@ -296,6 +327,7 @@ In some sets, non-coding genes outnumber protein coding genes (left).
 In most sets, protein coding genes are more abundant (right).
 
 ```{r,diabetes2,fig.width=8,fig.height=6}
+
 gs2net(diab)
 
 # classes
@@ -307,18 +339,22 @@ rownames(mydf) <- names(diab)
 mydf_n <- mydf/rowSums(mydf)
 mydf <- mydf[,head(order(-colSums(mydf_n)),8)]
 colfunc <- colorRampPalette(c("white", "yellow","orange","red","darkred"))(n=25)
-heatmap.2(t(as.matrix(mydf)),col=colfunc,trace="none",margin=c(5,10),cexCol = 0.3, cexRow = 0.6 ,scale="col",dendrogram = "none",main="Diabetes gene sets by biotype",na.color = "white")
+heatmap.2(t(as.matrix(mydf)),col=colfunc,trace="none",margin=c(5,10),cexCol = 0.3, 
+  cexRow = 0.6 ,scale="col",dendrogram = "none",main="Diabetes gene sets by biotype",na.color = "white")
+
 ```
 
 In these gene sets, psudogenes are underrepresented while protein coding, lincRNA and antisense RNA genes are overrepresented.
 
 ```{r,diabetes3}
+
 mydf_n[is.na(mydf_n)] <- 0
 mytable <-colSums(mydf_n)
 mytable <- mytable/sum(mytable)*100
 mytable<-mytable[order(mytable)]
 par(mar=c(3,13,1,1)); barplot(mytable,horiz=TRUE,las=2,cex.names = 0.7,cex.axis = 0.8, 
   main="Overall biotype class representation (%)" ) ;grid()
+
 ```
 
 Here is the reactome enrichment plot for the diabetes gene sets. 
@@ -326,6 +362,7 @@ The text is too small to make out from this chart so I will need to look at maki
 One thing we can see from the chart is that not many of the enriched Reactomes are common apart from the horizontal strip near the bottom.
 
 ```{r,diabetes4,fig.width=10,fig.height=8}
+
 # reactome enrichment
 res <- lapply(diab, function(x) { ora(gs=x,genesets=reactome, universe=universe)  }  )
 res <- res[which(lapply(res,length)>0)]
@@ -333,7 +370,9 @@ myres <- bind_rows(lapply(res, as.data.frame.list))
 myres[is.na(myres)] <- 0
 rownames(myres) <- names(res)
 colfunc <- colorRampPalette(c("white", "lightblue","blue", "darkblue"))(n=25)
-heatmap.2(t(as.matrix(myres)),col=colfunc,trace="none",margin=c(5,10),cexRow = 0.2, cexCol = 0.3 ,dendrogram = "none",main="Diabetes gene sets by Reactome enrichment")
+heatmap.2(t(as.matrix(myres)),col=colfunc,trace="none",margin=c(5,10),cexRow = 0.2, 
+  cexCol = 0.3 ,dendrogram = "none",main="Diabetes gene sets by Reactome enrichment")
+
 ```
 
 
@@ -343,13 +382,16 @@ Let's analyse the new heart disease gene sets.
 There are 50 gene sets.
 
 ```{r,heartdisease1}
-hd <- gmt_import("heartdisease.gmt")
+
+hd <- gmt_import("heartdisease_genesymbols.gmt")
+hd <- diab[which(!names(hd)=='')]
 hd <- hd[which(!duplicated(names(hd)))]
 length(hd)
 setnames <- names(hd)
 names(hd) <-paste("GS",1:length(hd))
 numgenes <- unlist(lapply(hd,length))
 hist(numgenes,breaks = 15, xlab="number of genes per set",main="Heart disease gene sets")
+
 ```
 
 The network chart indicatesmost sets are linked around GS50. 
@@ -358,6 +400,7 @@ There are several very small groups on the right of  the chart.
 The biotype heatmap shows overall genes sets are composed motly of protein coding genes and a small number of sets have a majority of lincRNA and pseudo genes.
 
 ```{r,heartdisease2,fig.width=8,fig.height=6}
+
 gs2net(hd)
 
 # classes
@@ -369,18 +412,22 @@ rownames(mydf) <- names(hd)
 mydf_n <- mydf/rowSums(mydf)
 mydf <- mydf[,head(order(-colSums(mydf_n)),8)]
 colfunc <- colorRampPalette(c("white", "yellow","orange","red","darkred"))(n=25)
-heatmap.2(t(as.matrix(mydf)),col=colfunc,trace="none",margin=c(5,10),cexCol = 0.2, cexRow = 0.8,scale="col",dendrogram = "none",main="Heart disease gene sets by biotype",na.color = "white")
+heatmap.2(t(as.matrix(mydf)),col=colfunc,trace="none",margin=c(5,10),cexCol = 0.2,
+  cexRow = 0.8,scale="col",dendrogram = "none",main="Heart disease gene sets by biotype",na.color = "white")
+
 ```
 
 Similar to the other sets, pseudogenes are underrepresented and protein coding, lincRNA, and antisense genes are overrepresented.
 
 ```{r,heartdisease3}
+
 mydf_n[is.na(mydf_n)] <- 0
 mytable <-colSums(mydf_n)
 mytable <- mytable/sum(mytable)*100
 mytable<-mytable[order(mytable)]
 par(mar=c(3,13,1,1)); barplot(mytable,horiz=TRUE,las=2,cex.names = 0.7,cex.axis = 0.8, 
   main="Overall biotype class representation (%)" ) ;grid()
+
 ```
 
 The reactome heatmap shows a cluster gene sets that are enriched for ECM, collagen and IGF signaling (lower).
@@ -388,6 +435,7 @@ There is a strip showing metabolism, immune signaling and signal transduction ar
 Apart from that, the enriched gene sets are quite distinct.
 
 ```{r,heartdisease4,fig.width=10,fig.height=8}
+
 # reactome enrichment
 res <- lapply(hd, function(x) { ora(gs=x,genesets=reactome, universe=universe)  }  )
 res <- res[which(lapply(res,length)>0)]
@@ -395,7 +443,9 @@ myres <- bind_rows(lapply(res, as.data.frame.list))
 myres[is.na(myres)] <- 0
 rownames(myres) <- names(res)
 colfunc <- colorRampPalette(c("white", "lightblue","blue", "darkblue"))(n=25)
-heatmap.2(t(as.matrix(myres)),col=colfunc,trace="none",margin=c(5,15),cexRow = 0.4, cexCol = 0.5, dendrogram = "none",main="Heart disease gene sets by Reactome enrichment")
+heatmap.2(t(as.matrix(myres)),col=colfunc,trace="none",margin=c(5,15),cexRow = 0.4, cexCol = 0.5, 
+  dendrogram = "none",main="Heart disease gene sets by Reactome enrichment")
+
 ```
 
 ## SARS, MERS and SARS-CoV-2
@@ -404,13 +454,16 @@ Let's analyse the new virus infection gene sets.
 There are 66 sets.
 
 ```{r,sars1}
-sars <- gmt_import("SARS_MERS.gmt")
+
+sars <- gmt_import("sarsmers_genesymbols.gmt")
+sars <- diab[which(!names(sars)=='')]
 sars <- sars[which(!duplicated(names(sars)))]
 length(sars)
 setnames <- names(sars)
 names(sars) <-paste("GS",1:length(sars))
 numgenes <- unlist(lapply(sars,length))
 hist(numgenes,breaks = 15, xlab="number of genes per set",main="SARS, MERS and SARS-CoV-2 gene sets")
+
 ```
 
 The network diagram shows a large cluster of sets around GS21 (left side).
@@ -419,6 +472,7 @@ The biotype chart shows most gene sets are dominated with protein coding genes b
 
 
 ```{r,sars2,fig.width=8,fig.height=6}
+
 gs2net(sars)
 
 # classes
@@ -430,18 +484,22 @@ rownames(mydf) <- names(sars)
 mydf_n <- mydf/rowSums(mydf)
 mydf <- mydf[,head(order(-colSums(mydf_n)),8)]
 colfunc <- colorRampPalette(c("white", "yellow","orange","red","darkred"))(n=25)
-heatmap.2(t(as.matrix(mydf)),col=colfunc,trace="none",margin=c(5,10),cexCol = 0.4, cexRow = 0.8,scale="col",dendrogram = "none",main="SARS, MERS and SARS-CoV2 gene sets by biotype",na.color = "white")
+heatmap.2(t(as.matrix(mydf)),col=colfunc,trace="none",margin=c(5,10),cexCol = 0.4, cexRow = 0.8,
+  scale="col",dendrogram = "none",main="SARS, MERS and SARS-CoV2 gene sets by biotype",na.color = "white")
+
 ```
 
 The overall biotype representation is similar to the other sets with overrepresentation of lincRNA and antisense RNA genes.
 
 ```{r,sars3}
+
 mydf_n[is.na(mydf_n)] <- 0
 mytable <-colSums(mydf_n)
 mytable <- mytable/sum(mytable)*100
 mytable<-mytable[order(mytable)]
 par(mar=c(3,13,1,1)); barplot(mytable,horiz=TRUE,las=2,cex.names = 0.7,cex.axis = 0.8, 
   main="Overall biotype class representation (%)" ) ;grid()
+
 ```
 
 There is a cluster of immune related enrichment in several gene sets as expected (lower left).
@@ -449,6 +507,7 @@ Moreover there are some clustering of integrins (lower left), and cell cycle (mi
 Post translational modification and signal transduction were also common.
 
 ```{r,sars4,fig.width=10,fig.height=8}
+
 # Reactome enrichment
 res <- lapply(sars, function(x) { ora(gs=x,genesets=reactome, universe=universe)  }  )
 res <- res[which(lapply(res,length)>0)]
@@ -456,7 +515,9 @@ myres <- bind_rows(lapply(res, as.data.frame.list))
 myres[is.na(myres)] <- 0
 rownames(myres) <- names(res)
 colfunc <- colorRampPalette(c("white", "lightblue","blue", "darkblue"))(n=25)
-heatmap.2(t(as.matrix(myres)),col=colfunc,trace="none",margin=c(5,10),cexRow = 0.3, cexCol = 0.4,dendrogram = "none",main="SARS, MERS and SARS-CoV-2 gene sets genes by Reactome enrichment")
+heatmap.2(t(as.matrix(myres)),col=colfunc,trace="none",margin=c(5,10),cexRow = 0.3, cexCol = 0.4,
+  dendrogram = "none",main="SARS, MERS and SARS-CoV-2 gene sets genes by Reactome enrichment")
+
 ```
 
 ## Overall analysis
@@ -469,6 +530,7 @@ Altogether these new sets include 15522 genes, of these 12824 are protein coding
 
 
 ```{r,overall1}
+
 names(epi) <- paste("Epilepsy",names(epi) )
 names(diab) <- paste("Diabetes",names(diab) )
 names(hd) <- paste("Heart disease",names(hd) )
@@ -503,6 +565,7 @@ allg <- unique(unname(unlist(all)))
 length(allg)
 v1 <- list("DEE2 sets"=allg,"protein coding"=prot, "non-protein coding"=nprot)
 plot(euler(v1),quantities = TRUE)
+
 ```
 
 

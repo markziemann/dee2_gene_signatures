@@ -1,0 +1,91 @@
+---
+title: "Overlap analysis for newly made gene sets"
+author: "The DEE2 Gene Signatures Group"
+date: "`r Sys.Date()`"
+output:
+  html_document
+---
+Source: https://github.com/markziemann/dee2_gene_signatures
+
+## Background
+
+The purpose of this analysis is to perform Jaccard analysis with the new gene sets to ensure they are not redundant
+with those already in MSigDB.
+
+## Libraries
+
+```{r, libs}
+suppressPackageStartupMessages({
+  library("getDEE2")
+  library("mitch")
+  library("triwise")
+  library("dplyr")
+  library("gplots")
+  library("reshape2")
+  library("network")
+})
+```
+
+## Import gene sets
+
+Now for MSigDB version 7.2 accessed 27/Sep/2020.
+There are 31120 sets and 40044 genes.
+
+```{r,import}
+
+epi <- gmt_import("epilepsy_genesymbols.gmt")
+diab <- gmt_import("diabetes_genesymbols.gmt")
+hd <- gmt_import("heartdisease_genesymbols.gmt")
+sars <- gmt_import("sarsmers_genesymbols.gmt")
+
+msigdb <- gmt_import("msigdb.v7.2.symbols.gmt")
+length(msigdb)
+
+```
+
+## Jaccard overlap
+
+Here is a function that converts list of vectors to a network diagram.
+There are 2x edges than nodes.
+Only the edges with highest similarity are retained, as per jaccard.
+The size of the gene set is proportional to the node size (sqrt).
+
+```{r,gsnet}
+gsjac <- function(gs1,gs2){
+  mclapply(gs1, function(y) {
+    l <- lapply(gs2,function(x)  {  length(intersect(x,y )) /  length(union(x,y )) } ) 
+    l <- unlist(l)
+    lmax <- tail(l[order(l)],1)
+    lmax
+  },mc.cores=8)    
+}
+
+
+# calculate jaccard with sets already in MSigDB
+epi_jac <- gsjac(epi,msigdb)
+# any with jaccard above 80% ?
+which(epi_jac >0.8)
+#max
+epi_jac[tail(order(unlist(epi_jac)),1)]
+
+
+diab_jac <- gsjac(diab,msigdb)
+which(diab_jac >0.8)
+diab_jac[tail(order(unlist(diab_jac)),1)]
+
+hd_jac <- gsjac(hd,msigdb)
+which(hd_jac >0.8)
+hd_jac[tail(order(unlist(hd_jac)),1)]
+
+sars_jac <- gsjac(sars,msigdb)
+which(sars_jac >0.8)
+sars_jac[tail(order(unlist(sars_jac)),1)]
+
+```
+
+## Session information
+
+```{r sessioninfo}
+sessionInfo()
+```
+
